@@ -192,7 +192,7 @@
     <ClCompile Include="DirectXGame\Application\Actor\StageManager.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
+    <ClCompile Include="DirectXGame\Application\Actor\Player.cpp">
       <Filter>ソースファイル\Actor</Filter>
     </ClCompile>
   </ItemGroup>
