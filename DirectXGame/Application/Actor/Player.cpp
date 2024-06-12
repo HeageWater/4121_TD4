@@ -44,7 +44,7 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 	model_->mat_.trans_.z_ = 0;
 
 	controller_ = Controller::GetInstance();
-
+	
 	time_ = 0;
 
 	sound_ = MyXAudio::GetInstance();

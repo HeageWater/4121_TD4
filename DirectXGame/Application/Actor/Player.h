@@ -1,7 +1,9 @@
 #pragma once
-#include "PlayerAttack.h"
 #include "ImGuiManager.h"
 #include "GameModel.h"
+#include "Input.h"
+#include "Controller.h"
+#include "Sound.h"
 
 /// <summary>
 /// ゲーム中の自機
@@ -47,7 +49,7 @@ public:
 	/// <param name="matProjection"></param>
 	/// <param name="input"></param>
 	/// <returns></returns>
-	Vector2D MoveCamera(Matrix matView, Matrix matProjection, Input* input);
+	Vector2D MoveCamera(Matrix matView, Matrix matProjectionsn, Input* input);
 
 	/// <summary>
 	/// 更新
