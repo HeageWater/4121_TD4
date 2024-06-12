@@ -16,10 +16,6 @@
 #include "Shader.h"
 
 //ファイルを読み込んで反映するもの
-#include "Enemy.h"
-#include "BaseEnemy.h"
-#include "BulletEnemy.h"
-#include "Stage.h"
 
 //warp
 //cameraPos
@@ -73,19 +69,6 @@ public:
 	void SetModel(Shader shader, GPipeline* pipeline);
 
 	/// <summary>
-	/// ステージの情報を渡す
-	/// </summary>
-	/// <returns></returns>
-	std::vector<Stage*> GetStage();
-
-	/// <summary>
-	/// エネミーの情報を渡す
-	/// </summary>
-	/// <returns></returns>
-	//std::vector<Enemy*> GetEnemy();
-	std::vector<BaseEnemy*> GetEnemy();
-
-	/// <summary>
 	/// 読み込んだステージの開始地点を返す
 	/// </summary>
 	/// <returns></returns>
@@ -126,16 +109,6 @@ public:
 private:
 	//ステージ読み込み
 	LevelData* levelData_ = nullptr;
-
-	//ステージ格納用
-	std::map<std::string, Stage*> newStage_;
-	std::map<std::string, Enemy*> newEnemy_;
-	//std::map<std::string, Enemy*> newEnemy_;
-
-	//制作時に使用
-	std::vector<Stage*> stages_;
-	//std::vector<Enemy*> enemies_;
-	std::vector<BaseEnemy*> enemies_;
 
 	//カメラのposを記録しておく
 	std::vector<Vector3D*> cameraPos_;

@@ -160,7 +160,6 @@
     <ClCompile Include="DirectXGame\Engine\Object\ModelManager.cpp" />
     <ClCompile Include="DirectXGame\Application\Scene\TutorialScene.cpp" />
     <ClCompile Include="DirectXGame\Application\Ui\UiManager.cpp" />
-    <ClCompile Include="DirectXGame\Application\Actor\StageManager.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -254,7 +253,6 @@
     <ClInclude Include="DirectXGame\Engine\Object\ModelManager.h" />
     <ClInclude Include="DirectXGame\Application\Scene\TutorialScene.h" />
     <ClInclude Include="DirectXGame\Application\Ui\UiManager.h" />
-    <ClInclude Include="DirectXGame\Application\Actor\StageManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

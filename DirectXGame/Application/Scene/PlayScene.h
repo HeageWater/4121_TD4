@@ -6,16 +6,11 @@
 
 //このシーンにのみ追加するもの
 #include "Player.h"
-#include "Stage.h"
-#include "Enemy.h"
-#include "Goal.h"
 #include "Collision.h"
 #include "HitStop.h"
 #include "Shake.h"
 #include "Emitter.h"
 #include "ChengeScene.h"
-#include "Warp.h"
-#include "TitleObj.h"
 #include "Shake.h"
 #include "GameCamera.h"
 
