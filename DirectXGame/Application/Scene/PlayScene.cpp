@@ -5,8 +5,15 @@
 
 void PlayScene::Update()
 {
-	//
+	//デバッグ表示用
 	Debug();
+
+	///ここから更新処理追加
+
+
+
+
+	///ここまで
 
 	//カメラ更新
 	matView_.MatUpdate();
@@ -78,6 +85,13 @@ void PlayScene::Draw()
 
 	//スクリーン描画
 	screen_.Draw(whiteTex_);
+
+	///ここから描画処理追加
+
+
+
+
+	///ここまで
 
 	//ボックスパーティクル
 	ParticleManager::GetInstance()->Draw();

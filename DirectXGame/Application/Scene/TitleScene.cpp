@@ -8,6 +8,13 @@ void TitleScene::Update()
 	//デバッグ表示用
 	Debug();
 
+	///ここから更新処理追加
+
+
+
+
+	///ここまで
+
 	matView_.eye_.x_ += input_->GetKey(DIK_D) - input_->GetKey(DIK_A);
 	matView_.eye_.z_ += input_->GetKey(DIK_W) - input_->GetKey(DIK_S);
 
@@ -68,7 +75,12 @@ void TitleScene::Draw()
 	//スクリーン描画
 	screen_.Draw(whiteTex_);
 
+	///ここから描画処理追加
 
+
+
+
+	///ここまで
 
 	//シーンチェンジ描画
 	ChengeScene::GetInstance()->Draw();
