@@ -33,8 +33,8 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 
 	//SetModel("Resources\\Model\\Player\\Player.obj");
 
-	//model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\Model\\Player\\Player.obj", pipeline_);
-	model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\skydome\\skydome.obj", pipeline_);
+	model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\Model\\Player\\Player.obj", pipeline_);
+	//model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\skydome\\skydome.obj", pipeline_);
 
 	model_->mat_.Initialize();
 	model_->mat_.scale_ = { 10,10,10 };

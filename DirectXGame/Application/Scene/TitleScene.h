@@ -4,8 +4,6 @@
 #include "Controller.h"
 #include "Sound.h"
 
-#include "Player.h"
-
 /// <summary>
 /// ゲームのタイトルシーン
 /// </summary>
@@ -81,7 +79,4 @@ private:
 	//shader
 	Shader shader_;
 	Shader bilShader_;
-
-	//仮プレイヤー
-	std::unique_ptr<Player> player_;
 };
