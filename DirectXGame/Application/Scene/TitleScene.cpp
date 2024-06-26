@@ -134,6 +134,10 @@ void TitleScene::Debug()
 	ImGui::SliderFloat("eyeX", &matView_.eye_.x_, 0.01f, 50.99f);
 	ImGui::SliderFloat("eyeZ", &matView_.eye_.z_, 0.01f, 50.99f);
 
+	//マスの数
+	float sizeT = (float)TroutManager::GetInstance()->GetTrout().size();
+	ImGui::SliderFloat("trout size", &sizeT, 0.01f, 50.99f);
+
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))
 	{
