@@ -10,8 +10,18 @@ void TitleScene::Update()
 
 	///ここから更新処理追加
 
+	//player更新
+	player_->Update(matView_.mat_, matProjection_);
 
+	TroutManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
+	TroutManager::GetInstance()->SetModel(shader_, pipeline_.get());
+	TroutManager::GetInstance()->Update();
 
+	//space押して生成
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		TroutManager::GetInstance()->CreateTrout(Battle);
+	}
 
 	///ここまで
 
@@ -59,6 +69,15 @@ void TitleScene::Initialize()
 
 	//tex
 	whiteTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/white1x1.png");
+
+	//player初期化
+	player_ = std::make_unique<Player>();
+	player_->Initialize(shader_, pipeline_.get());
+
+
+	//test 
+	TroutManager::GetInstance()->Initialize();
+
 }
 
 void TitleScene::Draw()
@@ -77,9 +96,10 @@ void TitleScene::Draw()
 
 	///ここから描画処理追加
 
+	//player描画
+	player_->Draw();
 
-
-
+	TroutManager::GetInstance()->Draw();
 	///ここまで
 
 	//シーンチェンジ描画

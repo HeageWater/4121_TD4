@@ -192,6 +192,21 @@
     <ClCompile Include="DirectXGame\Application\Actor\Player.cpp">
       <Filter>ソースファイル\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="DirectXGame\Application\Actor\BaseTrout.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXGame\Application\Actor\BattleTrout.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXGame\Application\Actor\ItemTrout.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXGame\Application\Actor\PowerUpTrout.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXGame\Application\Scene\BaseScene.h">
@@ -362,6 +377,21 @@
     <ClInclude Include="DirectXGame\Application\Ui\UiManager.h">
       <Filter>ヘッダーファイル\Ui</Filter>
     </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\BaseTrout.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\BattleTrout.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\PowerUpTrout.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\ItemTrout.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
@@ -492,6 +522,12 @@
     </Filter>
     <Filter Include="ヘッダーファイル\Ui">
       <UniqueIdentifier>{2e8a9e33-20c9-4549-89b0-db17d4a7d073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Actor\Trout">
+      <UniqueIdentifier>{5c69a392-90b9-47a6-8a50-f4ac7c1008fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル\Actor\Trout">
+      <UniqueIdentifier>{ad121885-107b-4eb2-a278-42f28524bee9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

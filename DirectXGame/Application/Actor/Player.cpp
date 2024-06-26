@@ -2,7 +2,6 @@
 #include "Easing.h"
 #include "CollisionManager.h"
 #include "ModelManager.h"
-#include <imgui.h>
 
 Player::Player()
 {
@@ -24,6 +23,12 @@ Player::Player()
 
 	//タイム
 	time_ = 0;
+
+	//パイプライン初期化
+	pipeline_ = nullptr;
+
+	//画像初期化
+	tex_ = 0;
 }
 
 Player::~Player()
@@ -62,6 +67,7 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 
 	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/skydome/skyBG.png");
+	//tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Player/Player.png");
 }
 
 void Player::Draw(size_t tex)

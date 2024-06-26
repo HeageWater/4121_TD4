@@ -4,6 +4,10 @@
 #include "Controller.h"
 #include "Sound.h"
 
+//追加インクルード
+#include "Player.h"
+#include "TroutManager.h"
+
 /// <summary>
 /// ゲームのタイトルシーン
 /// </summary>
@@ -79,4 +83,8 @@ private:
 	//shader
 	Shader shader_;
 	Shader bilShader_;
+
+private:
+
+	std::unique_ptr<Player> player_;
 };

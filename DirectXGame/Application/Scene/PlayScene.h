@@ -16,6 +16,7 @@
 
 #include "LoadObjectData.h"
 #include "ParticleManager.h"
+#include "TroutManager.h"
 
 /// <summary>
 /// 基本的なゲーム用シーン
