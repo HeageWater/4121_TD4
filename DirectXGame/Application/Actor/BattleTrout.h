@@ -5,14 +5,14 @@ class BattleTrout :public BaseTrout
 {
 public:
 
-	BattleTrout();
-	~BattleTrout();
+	//BattleTrout();
+	//~BattleTrout();
 
-	void Initialize()override;
+	//void Initialize()override;
 
-	void Update()override;
+	//void Update()override;
 
-	void Draw()override;
+	//void Draw()override;
 
 private:
 };

@@ -1,21 +1,21 @@
 #include "BattleTrout.h"
 
-BattleTrout::BattleTrout()
-{
-}
+//BattleTrout::BattleTrout()
+//{
+//}
+//
+//BattleTrout::~BattleTrout()
+//{
+//}
 
-BattleTrout::~BattleTrout()
-{
-}
-
-void BattleTrout::Initialize()
-{
-}
-
-void BattleTrout::Update()
-{
-}
-
-void BattleTrout::Draw()
-{
-}
+//void BattleTrout::Initialize()
+//{
+//}
+//
+//void BattleTrout::Update()
+//{
+//}
+//
+//void BattleTrout::Draw()
+//{
+//}

@@ -2,7 +2,7 @@
 
 void TroutManager::Initialize()
 {
-	tex_ =  MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
 }
 
 void TroutManager::Update()
@@ -82,6 +82,9 @@ void TroutManager::CreateTrout(size_t kind)
 
 	//改めて初期化
 	newTrout_->Initialize();
+	
+	newTrout_->SetPos(Vector3D(0, 0, 10));
+	newTrout_->SetScale(Vector3D(5, 5, 5));
 
 	//格納
 	trouts_.push_back(newTrout_);

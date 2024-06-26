@@ -5,14 +5,14 @@ class PowerUpTrout : public BaseTrout
 {
 public:
 
-	PowerUpTrout();
+	/*PowerUpTrout();
 	~PowerUpTrout();
 
 	void Initialize()override;
 
 	void Update()override;
 
-	void Draw()override;
+	void Draw()override;*/
 
 private:
 };

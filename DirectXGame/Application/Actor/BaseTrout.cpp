@@ -6,6 +6,11 @@ void BaseTrout::Initialize()
 	model_ = std::make_unique<Model>();
 	model_->Initialize(MyDirectX::GetInstance(), shader_, "Resources\\Model\\box.obj", pipeline_);
 
+	//mat初期化
+	model_->mat_.Initialize();
+	model_->mat_.trans_ = { 0,0,0 };
+	model_->mat_.scale_ = { 5,5,5 };
+
 	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
 }

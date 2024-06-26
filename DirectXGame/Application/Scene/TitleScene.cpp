@@ -97,9 +97,11 @@ void TitleScene::Draw()
 	///ここから描画処理追加
 
 	//player描画
-	player_->Draw();
+	//player_->Draw();
 
+	//マス表示
 	TroutManager::GetInstance()->Draw();
+
 	///ここまで
 
 	//シーンチェンジ描画

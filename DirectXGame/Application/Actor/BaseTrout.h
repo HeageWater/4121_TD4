@@ -29,6 +29,36 @@ public:
 	/// <param name="pipeline"></param>
 	virtual void SetModel(Shader shader, GPipeline* pipeline);
 
+	/// <summary>
+	///posをセットする
+	/// </summary>
+	/// <param name="pos"></param>
+	virtual void SetPos(Vector3D pos) { model_->mat_.trans_ = pos; };
+
+	/// <summary>
+	/// scaleをセットする
+	/// </summary>
+	/// <param name="pos"></param>
+	virtual void SetScale(Vector3D scale) { model_->mat_.scale_ = scale; };
+
+	/// <summary>
+	/// posを返す
+	/// </summary>
+	/// <returns></returns>
+	virtual Vector3D GetPos() { return model_->mat_.trans_; };
+
+	/// <summary>
+	/// rotaionを返す
+	/// </summary>
+	/// <returns></returns>
+	virtual Vector3D GetRot() { return model_->mat_.rotAngle_; };
+
+	/// <summary>
+	/// scaleを返す
+	/// </summary>
+	/// <returns></returns>
+	virtual Vector3D GetScale() { return model_->mat_.scale_; };
+
 private:
 
 	//モデル
