@@ -2,7 +2,11 @@
 
 void TroutManager::Initialize()
 {
+	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
+
+	//マスの数を0に
+	count_ = 0;
 }
 
 void TroutManager::Update()
@@ -32,6 +36,18 @@ void TroutManager::Finalize()
 	{
 		trouts_.erase(trouts_.begin());
 	}
+}
+
+void TroutManager::Reset()
+{
+	//保存したposを削除
+	for (size_t i = 0; i < trouts_.size(); i++)
+	{
+		trouts_.erase(trouts_.begin());
+	}
+
+	//マスの数を0に
+	count_ = 0;
 }
 
 TroutManager* TroutManager::GetInstance()
@@ -88,6 +104,8 @@ void TroutManager::CreateTrout(size_t kind)
 
 	//格納
 	trouts_.push_back(newTrout_);
+
+	count_++;
 }
 
 std::vector<BaseTrout*> TroutManager::GetTrout()

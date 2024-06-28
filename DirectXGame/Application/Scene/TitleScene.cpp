@@ -20,6 +20,10 @@ void TitleScene::Update()
 	//space押して生成
 	if (input_->GetTrigger(DIK_SPACE))
 	{
+		//リセット
+		TroutManager::GetInstance()->Reset();
+
+		//バトルマス生成
 		TroutManager::GetInstance()->CreateTrout(Battle);
 	}
 

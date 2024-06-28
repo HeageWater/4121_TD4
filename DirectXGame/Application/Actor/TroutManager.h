@@ -36,6 +36,11 @@ public:
 	void Finalize();
 
 	/// <summary>
+	/// リセット
+	/// </summary>
+	void Reset();
+
+	/// <summary>
 	/// シングルトン
 	/// </summary>
 	/// <returns></returns>
@@ -89,4 +94,7 @@ private:
 
 	//画像
 	size_t tex_;
+
+	//マスの数
+	size_t count_;
 };
