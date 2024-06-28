@@ -26,17 +26,20 @@ void BaseTrout::Update()
 
 void BaseTrout::Draw()
 {
+	//描画
 	model_->Draw(tex_);
 }
 
 void BaseTrout::SetCamera(Matrix view, Matrix prodaction)
 {
+	//カメラ関係
 	view_ = view;
 	prodaction_ = prodaction;
 }
 
 void BaseTrout::SetModel(Shader shader, GPipeline* pipeline)
 {
+	//モデル関係
 	shader_ = shader;
 	pipeline_ = pipeline;
 }
