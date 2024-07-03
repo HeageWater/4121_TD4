@@ -9,6 +9,7 @@ enum Kind
 	Battle,
 	PowerUp,
 	Item,
+	Size,//これを最後に置くことでマス数がわかる
 };
 
 class TroutManager
@@ -61,15 +62,21 @@ public:
 	void SetModel(Shader shader, GPipeline* pipeline);
 
 	/// <summary>
-	/// マス制作
+	/// マス生成
 	/// </summary>
-	void CreateTrout(size_t kind);
+	/// <param name="kind">何も入れないとランダムで生成</param>
+	void CreateTrout(size_t kind = 99, Vector3D pos = { 0,0,0 });
+
+	/// <summary>
+	/// サイズ
+	/// </summary>
+	/// <param name="size"></param>
+	void CreateMap(size_t size);
 
 	/// <summary>
 	/// エネミーの情報を渡す
 	/// </summary>
 	/// <returns></returns>
-	//std::vector<Enemy*> GetEnemy();
 	std::vector<BaseTrout*> GetTrout();
 
 private:

@@ -23,8 +23,11 @@ void TitleScene::Update()
 		//リセット
 		TroutManager::GetInstance()->Reset();
 
+		//マップの階層
+		size_t a = 5;
+
 		//バトルマス生成
-		TroutManager::GetInstance()->CreateTrout(Battle);
+		TroutManager::GetInstance()->CreateMap(a);
 	}
 
 	///ここまで

@@ -45,9 +45,6 @@ void TroutManager::Reset()
 	{
 		trouts_.erase(trouts_.begin());
 	}
-
-	//マスの数を0に
-	count_ = 0;
 }
 
 TroutManager* TroutManager::GetInstance()
@@ -68,10 +65,22 @@ void TroutManager::SetModel(Shader shader, GPipeline* pipeline)
 	pipeline_ = pipeline;
 }
 
-void TroutManager::CreateTrout(size_t kind)
+void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 {
 	//モデルを指定して3Dオブジェクトを生成
 	BaseTrout* newTrout_ = nullptr;
+
+	if (kind == 99)
+	{
+		//最小値
+		size_t minRange = 1;
+
+		//最大値
+		size_t maxRange = Size - 1;
+
+		//ランダム
+		kind = MyMath::GetRandom(minRange, maxRange);
+	}
 
 	//引数がBattleなら
 	if (kind == Battle)
@@ -98,14 +107,37 @@ void TroutManager::CreateTrout(size_t kind)
 
 	//改めて初期化
 	newTrout_->Initialize();
-	
-	newTrout_->SetPos(Vector3D(0, 0, 10));
+
+	//位置と大きさ
+	newTrout_->SetPos(pos);
 	newTrout_->SetScale(Vector3D(5, 5, 5));
 
 	//格納
 	trouts_.push_back(newTrout_);
+}
 
-	count_++;
+void TroutManager::CreateMap(size_t size)
+{
+	//マップ生成
+	for (size_t i = 0; i < size; i++)
+	{
+		//2個ずつ増やす
+		size_t count = (i * 2) + 1;
+
+		//半分超えたら減らす
+		if (i + 1 > size / 2)
+		{
+			count = ((size - i - 1) * 2) + 1;
+		}
+
+		//マスの数
+		for (size_t j = 0; j < count; j++)
+		{
+			//マス生成
+			CreateTrout(99, { (float)i * 10,(float)i * 10,(float)j * 10 });
+
+		}
+	}
 }
 
 std::vector<BaseTrout*> TroutManager::GetTrout()
