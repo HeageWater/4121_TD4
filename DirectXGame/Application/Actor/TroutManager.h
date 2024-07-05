@@ -10,6 +10,7 @@ enum Kind
 	PowerUp,
 	Item,
 	Size,//これを最後に置くことでマス数がわかる
+	Random = 99,//ランダム生成用
 };
 
 class TroutManager

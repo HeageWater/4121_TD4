@@ -134,7 +134,7 @@ void TroutManager::CreateMap(size_t size)
 		for (size_t j = 0; j < count; j++)
 		{
 			//マス生成
-			CreateTrout(99, { (float)i * 10,(float)i * 10,(float)j * 10 });
+			CreateTrout(Random, { (float)i * 10,(float)i * 10,(float)j * 10 });
 
 		}
 	}
