@@ -81,9 +81,8 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 		//ランダム
 		kind = MyMath::GetRandom(minRange, maxRange);
 	}
-
 	//引数がBattleなら
-	if (kind == Battle)
+	else if (kind == Battle)
 	{
 		//バトルマスに
 		newTrout_ = new BattleTrout();
@@ -135,7 +134,6 @@ void TroutManager::CreateMap(size_t size)
 		{
 			//マス生成
 			CreateTrout(Random, { (float)i * 10,(float)i * 10,(float)j * 10 });
-
 		}
 	}
 }

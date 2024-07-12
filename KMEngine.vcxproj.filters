@@ -392,6 +392,9 @@
     <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h">
       <Filter>ヘッダーファイル\Actor\Trout</Filter>
     </ClInclude>
+    <ClInclude Include="Status.h">
+      <Filter>ヘッダーファイル\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
