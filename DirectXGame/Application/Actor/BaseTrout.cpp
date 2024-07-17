@@ -4,7 +4,7 @@ void BaseTrout::Initialize()
 {
 	//modelを制作
 	model_ = std::make_unique<Model>();
-	model_->Initialize(MyDirectX::GetInstance(), shader_, "Resources\\Model\\box.obj", pipeline_);
+	model_->Initialize(MyDirectX::GetInstance(), shader_, "Resources\\Model\\battle\\battle.obj", pipeline_);
 
 	//mat初期化
 	model_->mat_.Initialize();
@@ -12,7 +12,7 @@ void BaseTrout::Initialize()
 	model_->mat_.scale_ = { 5,5,5 };
 
 	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/battle/battle.png");
 }
 
 void BaseTrout::Update()

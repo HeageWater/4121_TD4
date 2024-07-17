@@ -5,14 +5,14 @@ class ItemTrout :public BaseTrout
 {
 public:
 
-	/*ItemTrout();
+	ItemTrout();
 	~ItemTrout();
 
 	void Initialize()override;
 
 	void Update()override;
 
-	void Draw()override;*/
+	void Draw()override;
 
 private:
 };

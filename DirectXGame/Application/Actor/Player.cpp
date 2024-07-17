@@ -16,7 +16,7 @@ Player::Player()
 
 	//初期化
 	model_->mat_.Initialize();
-	model_->mat_.scale_ = { 1,1,1 };
+	model_->mat_.scale_ = { 0.5f,0.5f,0.5f };
 
 	//サウンド
 	sound_ = nullptr;
@@ -43,11 +43,11 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 	pipeline_ = pipeline;
 
 	//モデル読み込み
-	model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\Model\\Player\\Player.obj", pipeline_);
+	model_->Initialize(MyDirectX::GetInstance(), shader, "Resources\\Model\\player\\player.obj", pipeline_);
 
 	//初期化
 	model_->mat_.Initialize();
-	model_->mat_.scale_ = { 10,10,10 };
+	model_->mat_.scale_ = { 2,2,2 };
 	model_->mat_.rotAngle_ = { 0,0,0 };
 	model_->mat_.trans_.x_ = 0;// 950;
 	model_->mat_.trans_.y_ = 0;
@@ -55,7 +55,7 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 
 	//コントローラー
 	controller_ = Controller::GetInstance();
-	
+
 	//タイム
 	time_ = 0;
 
@@ -66,8 +66,8 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 	///jumpSE_ = sound_->SoundLoadWave("Resources/sound/SE_jump.wav");
 
 	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/skydome/skyBG.png");
-	//tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Player/Player.png");
+	//tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/skydome/skyBG.png");
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/player/player.png");
 }
 
 void Player::Draw(size_t tex)

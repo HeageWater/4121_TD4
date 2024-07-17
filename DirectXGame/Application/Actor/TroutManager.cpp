@@ -3,7 +3,7 @@
 void TroutManager::Initialize()
 {
 	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/ene/enemy.png");
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/battle/battle.png");
 
 	//マスの数を0に
 	count_ = 0;
@@ -14,7 +14,6 @@ void TroutManager::Update()
 	//ステージ更新
 	for (size_t i = 0; i < trouts_.size(); i++)
 	{
-		//trouts_[i]->Update(view_, prodaction_);
 		trouts_[i]->Update();
 	}
 }
@@ -25,26 +24,19 @@ void TroutManager::Draw()
 	for (size_t i = 0; i < trouts_.size(); i++)
 	{
 		trouts_[i]->Draw();
-		//trouts_[i]->Draw(tex_);
 	}
 }
 
 void TroutManager::Finalize()
 {
-	//保存したposを削除
-	for (size_t i = 0; i < trouts_.size(); i++)
-	{
-		trouts_.erase(trouts_.begin());
-	}
+	//消去
+	trouts_.clear();
 }
 
 void TroutManager::Reset()
 {
-	//保存したposを削除
-	for (size_t i = 0; i < trouts_.size(); i++)
-	{
-		trouts_.erase(trouts_.begin());
-	}
+	//消去
+	trouts_.clear();
 }
 
 TroutManager* TroutManager::GetInstance()
@@ -70,10 +62,11 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 	//モデルを指定して3Dオブジェクトを生成
 	BaseTrout* newTrout_ = nullptr;
 
-	if (kind == 99)
+	//ランダム
+	if (kind == Random)
 	{
 		//最小値
-		size_t minRange = 1;
+		size_t minRange = 0;
 
 		//最大値
 		size_t maxRange = Size - 1;
@@ -81,8 +74,9 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 		//ランダム
 		kind = MyMath::GetRandom(minRange, maxRange);
 	}
+
 	//引数がBattleなら
-	else if (kind == Battle)
+	if (kind == Battle)
 	{
 		//バトルマスに
 		newTrout_ = new BattleTrout();
@@ -110,6 +104,7 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 	//位置と大きさ
 	newTrout_->SetPos(pos);
 	newTrout_->SetScale(Vector3D(5, 5, 5));
+	newTrout_->SetVec(Vector3D(1, 1, 1));
 
 	//格納
 	trouts_.push_back(newTrout_);
@@ -133,7 +128,7 @@ void TroutManager::CreateMap(size_t size)
 		for (size_t j = 0; j < count; j++)
 		{
 			//マス生成
-			CreateTrout(Random, { (float)i * 10,(float)i * 10,(float)j * 10 });
+			CreateTrout(Random, { (float)i * 10 , 0, (float)((count / 2) - j) * 10 });
 		}
 	}
 }

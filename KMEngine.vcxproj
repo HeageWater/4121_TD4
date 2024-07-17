@@ -263,6 +263,7 @@
     <ClInclude Include="DirectXGame\Application\Actor\ItemTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\PowerUpTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Status.h" />
   </ItemGroup>
   <ItemGroup>

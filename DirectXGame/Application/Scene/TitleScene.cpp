@@ -48,7 +48,7 @@ void TitleScene::Update()
 void TitleScene::Initialize()
 {
 	//描画用行列
-	matView_.Init(Vector3D(0.0f, 60.0f, -50.0f), Vector3D(0.0f, 30.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
+	matView_.Init(Vector3D(20.0f, 60.0f, -90.0f), Vector3D(0.0f, 30.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
 
 	//shader
 	shader_.Initizlize(L"Resources/shader/BasicVS.hlsl", L"Resources/shader/BasicPS.hlsl");
@@ -104,7 +104,7 @@ void TitleScene::Draw()
 	///ここから描画処理追加
 
 	//player描画
-	//player_->Draw();
+	player_->Draw();
 
 	//マス表示
 	TroutManager::GetInstance()->Draw();
@@ -127,7 +127,7 @@ void TitleScene::Draw()
 
 void TitleScene::Finalize()
 {
-
+	TroutManager::GetInstance()->Finalize();
 }
 
 void TitleScene::Debug()

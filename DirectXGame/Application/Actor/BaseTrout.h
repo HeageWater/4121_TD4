@@ -5,7 +5,7 @@
 #include "Controller.h"
 #include "Sound.h"
 
-class BaseTrout : GameModel
+class BaseTrout : public GameModel
 {
 public:
 
@@ -59,7 +59,7 @@ public:
 	/// <returns></returns>
 	virtual Vector3D GetScale() { return model_->mat_.scale_; };
 
-private:
+public:
 
 	Matrix view_;
 	Matrix prodaction_;
@@ -69,5 +69,4 @@ private:
 
 	//画像
 	size_t tex_;
-
 };

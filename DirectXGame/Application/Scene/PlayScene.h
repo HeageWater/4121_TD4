@@ -67,6 +67,13 @@ private:
 
 	//カラー
 	Vector4D color_ = { 0,0,0,0 };
+
+private:
+
+	std::unique_ptr<Player> player_;
+	//std::unique_ptr<Enemy> player_;
+
+
 public:
 
 	/// <summary>

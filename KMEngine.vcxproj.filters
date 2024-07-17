@@ -395,6 +395,9 @@
     <ClInclude Include="Status.h">
       <Filter>ヘッダーファイル\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

@@ -77,7 +77,7 @@ void FlameWork::Initialize()
 	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/BGM.wav");
 	
 	//BGMを鳴らす
-	MyXAudio::GetInstance()->SoundPlayLoopWave(hitSound_);
+	//MyXAudio::GetInstance()->SoundPlayLoopWave(hitSound_);
 
 	//テクスチャマネージャ
 	TextureManager::GetInstance()->StaticInitialize();
