@@ -8,8 +8,8 @@ enum Kind
 {
 	Battle,
 	PowerUp,
-	Item,
-	Size,//これを最後に置くことでマス数がわかる
+	Item,//ここから下に追加
+	Size,//これを下から2番目に置くことでマスの数がわかる
 	Random = 99,//ランダム生成用
 };
 

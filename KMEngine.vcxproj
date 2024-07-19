@@ -166,6 +166,7 @@
     <ClCompile Include="DirectXGame\Application\Actor\ItemTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\PowerUpTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp" />
+    <ClCompile Include="Enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shader\GeometryPS.hlsl">
