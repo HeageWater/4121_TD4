@@ -13,23 +13,6 @@ void TitleScene::Update()
 	//player更新
 	player_->Update(matView_.mat_, matProjection_);
 
-	TroutManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
-	TroutManager::GetInstance()->SetModel(shader_, pipeline_.get());
-	TroutManager::GetInstance()->Update();
-
-	//space押して生成
-	if (input_->GetTrigger(DIK_SPACE))
-	{
-		//リセット
-		TroutManager::GetInstance()->Reset();
-
-		//マップの階層
-		size_t a = 5;
-
-		//バトルマス生成
-		TroutManager::GetInstance()->CreateMap(a);
-	}
-
 	///ここまで
 
 	matView_.eye_.x_ += input_->GetKey(DIK_D) - input_->GetKey(DIK_A);
@@ -88,8 +71,6 @@ void TitleScene::Initialize()
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(shader_, pipeline_.get());
 
-	//test 
-	TroutManager::GetInstance()->Initialize();
 
 }
 
@@ -115,9 +96,6 @@ void TitleScene::Draw()
 	//player描画
 	player_->Draw();
 
-	//マス表示
-	TroutManager::GetInstance()->Draw();
-
 	///ここまで
 
 	//シーンチェンジ描画
@@ -136,7 +114,7 @@ void TitleScene::Draw()
 
 void TitleScene::Finalize()
 {
-	TroutManager::GetInstance()->Finalize();
+
 }
 
 void TitleScene::Debug()
@@ -151,10 +129,6 @@ void TitleScene::Debug()
 	ImGui::SliderFloat("Test", &test1, 0.01f, 0.99f);
 	ImGui::SliderFloat("eyeX", &matView_.eye_.x_, 0.01f, 50.99f);
 	ImGui::SliderFloat("eyeZ", &matView_.eye_.z_, 0.01f, 50.99f);
-
-	//マスの数
-	float sizeT = (float)TroutManager::GetInstance()->GetTrout().size();
-	ImGui::SliderFloat("trout size", &sizeT, 0.01f, 50.99f);
 
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))

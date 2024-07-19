@@ -10,23 +10,24 @@ void PlayScene::Update()
 
 	///ここから更新処理追加
 
+	//space押して生成
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		//リセット
+		TroutManager::GetInstance()->Reset();
 
+		//マップの階層
+		size_t a = 5;
+
+		//バトルマス生成
+		TroutManager::GetInstance()->CreateMap(a);
+	}
 
 
 	///ここまで
 
-	//カメラ更新
-	matView_.MatUpdate();
-
-	//スクリーン更新
-	screen_.MatUpdate(matView_.mat_, matProjection_, ZERO);
-
-	//パーティクル更新
-	ParticleManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
-	ParticleManager::GetInstance()->Update();
-
-	//シーンチェンジ更新
-	ChengeScene::GetInstance()->Update();
+	//更新処理
+	ModelUpdate();
 }
 
 void PlayScene::Initialize()
@@ -70,6 +71,17 @@ void PlayScene::Initialize()
 
 	//基礎
 	sprite_->Inilialize(normalSpriteCommon_, &matProjection_);
+
+	//player初期化
+	player_ = std::make_unique<Player>();
+	player_->Initialize(shader_, pipeline_.get());
+
+	//天球
+	skydome_ = std::make_unique<Skydome>();
+	skydome_->Initialize(shader_, pipeline_.get());
+
+	//test 
+	TroutManager::GetInstance()->Initialize();
 }
 
 void PlayScene::Draw()
@@ -88,7 +100,14 @@ void PlayScene::Draw()
 
 	///ここから描画処理追加
 
+	//天球
+	skydome_->Draw();
 
+	//player描画
+	player_->Draw();
+
+	//マス表示
+	TroutManager::GetInstance()->Draw();
 
 
 	///ここまで
@@ -117,6 +136,33 @@ void PlayScene::Finalize()
 {
 	//パーティクル削除
 	ParticleManager::GetInstance()->Finalize();
+	TroutManager::GetInstance()->Finalize();
+}
+
+void PlayScene::ModelUpdate()
+{
+	//カメラ更新
+	matView_.MatUpdate();
+
+	//player更新
+	player_->Update(matView_.mat_, matProjection_);
+
+	//マス更新
+	TroutManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
+	TroutManager::GetInstance()->Update();
+
+	//スクリーン更新
+	screen_.MatUpdate(matView_.mat_, matProjection_, ZERO);
+
+	//パーティクル更新
+	ParticleManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
+	ParticleManager::GetInstance()->Update();
+
+	//天球更新
+	skydome_->Update(matView_.mat_, matProjection_);
+
+	//シーンチェンジ更新
+	ChengeScene::GetInstance()->Update();
 }
 
 void PlayScene::BlackOut()
@@ -175,6 +221,21 @@ void PlayScene::BlackOut()
 	//}
 }
 
+void PlayScene::MoveMap()
+{
+
+}
+
+void PlayScene::SelectMap()
+{
+
+}
+
+void PlayScene::ReturnMap()
+{
+
+}
+
 void PlayScene::Debug()
 {
 #ifdef _DEBUG
@@ -189,6 +250,10 @@ void PlayScene::Debug()
 	ImGui::SliderFloat("Test", &test1, 0.01f, 0.99f);
 	ImGui::SliderFloat("RstickX", &con.x_, 0.01f, 0.99f);
 	ImGui::SliderFloat("RstickY", &con.y_, 0.01f, 0.99f);
+
+	//マスの数
+	float sizeT = (float)TroutManager::GetInstance()->GetTrout().size();
+	ImGui::SliderFloat("trout size", &sizeT, 0.01f, 50.99f);
 
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))

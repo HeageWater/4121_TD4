@@ -7,7 +7,6 @@
 //追加インクルード
 #include "Player.h"
 #include "Skydome.h"
-#include "TroutManager.h"
 
 /// <summary>
 /// ゲームのタイトルシーン

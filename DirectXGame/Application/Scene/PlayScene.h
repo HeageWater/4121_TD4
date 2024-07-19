@@ -18,6 +18,9 @@
 #include "ParticleManager.h"
 #include "TroutManager.h"
 
+#include "Skydome.h"
+#include "TroutManager.h"
+
 /// <summary>
 /// 基本的なゲーム用シーン
 /// </summary>
@@ -70,9 +73,11 @@ private:
 
 private:
 
+	//プレイヤー
 	std::unique_ptr<Player> player_;
-	//std::unique_ptr<Enemy> player_;
 
+	//天球
+	std::unique_ptr<Skydome> skydome_;
 
 public:
 
@@ -97,9 +102,23 @@ public:
 	void Finalize()override;
 
 	/// <summary>
+	/// 作成したクラス系統の更新
+	/// </summary>
+	void ModelUpdate();
+
+	/// <summary>
 	/// ステージが切り替わるときの暗転
 	/// </summary>
 	void BlackOut();
+
+	//マップ上を移動するターン
+	void MoveMap();
+
+	//マスを選ぶターン
+	void SelectMap();
+
+	//マスから帰る
+	void ReturnMap();
 
 private:
 
