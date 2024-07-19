@@ -12,25 +12,6 @@
 class GameCamera
 {
 public:
-	//Matrix mat;
-	//Vector3D eye;		//	視点座標
-	//Vector3D target;	//	注視点座標
-	//Vector3D up;		//	上方向ベクトル
-	//Matrix billboard;
-private:
-	/*float disEyeTarget;
-	Vector3D frontVec;
-	Vector2D cursor;
-	Vector2D prevCursor;
-	Vector2D moveCursor;
-	Vector2D cursorSpd;
-
-	Vector2D rotAngle;
-	Vector2D prevRotAngle;
-	Vector2D endRotAngle;
-
-	Vector3D rightVec;
-	Vector3D downVec;*/
 
 	//描画用行列
 	MyMath::MatView matView_;
@@ -39,6 +20,7 @@ private:
 		Window::window_width_, Window::window_height_,
 		MyMath::ConvertToRad(70.0f), 0.1f, 1000.0f);
 public:
+
 	/// <summary>
 	/// 
 	/// </summary>
@@ -46,6 +28,11 @@ public:
 	/// <param name="_target"></param>
 	/// <param name="_up"></param>
 	void Initialize(Vector3D _eye, Vector3D _target, Vector3D _up);
+
+	/// <summary>
+	/// s
+	/// </summary>
+	void Initlalise();
 
 	/// <summary>
 	/// 
@@ -67,6 +54,16 @@ public:
 	/// Matrixをセットする 
 	/// </summary>
 	void SetMatrix(Matrix matrix) { matProjection_ = matrix; };
+
+	/// <summary>
+	/// リセット
+	/// </summary>
+	void Reset();
+
+	/// <summary>
+	/// カメラシェイク
+	/// </summary>
+	void Sheik(size_t time = 10);
 
 	/// <summary>
 	/// 

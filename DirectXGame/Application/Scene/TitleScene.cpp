@@ -41,6 +41,9 @@ void TitleScene::Update()
 	//スクリーン更新
 	screen_.MatUpdate(matView_.mat_, matProjection_, ZERO);
 
+	//天球更新
+	skydome_->Update(matView_.mat_, matProjection_);
+
 	//シーンチェンジ更新
 	ChengeScene::GetInstance()->Update();
 }
@@ -81,6 +84,9 @@ void TitleScene::Initialize()
 	player_ = std::make_unique<Player>();
 	player_->Initialize(shader_, pipeline_.get());
 
+	//天球
+	skydome_ = std::make_unique<Skydome>();
+	skydome_->Initialize(shader_, pipeline_.get());
 
 	//test 
 	TroutManager::GetInstance()->Initialize();
@@ -102,6 +108,9 @@ void TitleScene::Draw()
 	screen_.Draw(whiteTex_);
 
 	///ここから描画処理追加
+
+	//天球
+	skydome_->Draw();
 
 	//player描画
 	player_->Draw();

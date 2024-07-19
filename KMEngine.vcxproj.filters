@@ -208,6 +208,9 @@
       <Filter>ソースファイル\Actor\Trout</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="DirectXGame\Application\Actor\Skydome.cpp">
+      <Filter>ソースファイル\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXGame\Application\Scene\BaseScene.h">
@@ -398,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>ヘッダーファイル\Actor\Trout</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectXGame\Application\Actor\Skydome.h">
+      <Filter>ヘッダーファイル\Actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

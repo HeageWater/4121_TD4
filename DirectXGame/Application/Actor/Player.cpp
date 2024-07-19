@@ -47,7 +47,7 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 
 	//初期化
 	model_->mat_.Initialize();
-	model_->mat_.scale_ = { 2,2,2 };
+	model_->mat_.scale_ = { 5,5,5 };
 	model_->mat_.rotAngle_ = { 0,0,0 };
 	model_->mat_.trans_.x_ = 0;// 950;
 	model_->mat_.trans_.y_ = 0;

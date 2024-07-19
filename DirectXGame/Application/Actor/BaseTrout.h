@@ -61,9 +61,11 @@ public:
 
 public:
 
+	//
 	Matrix view_;
 	Matrix prodaction_;
 
+	//
 	Shader shader_;
 	GPipeline* pipeline_;
 

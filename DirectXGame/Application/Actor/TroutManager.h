@@ -66,7 +66,7 @@ public:
 	/// マス生成
 	/// </summary>
 	/// <param name="kind">何も入れないとランダムで生成</param>
-	void CreateTrout(size_t kind = 99, Vector3D pos = { 0,0,0 });
+	void CreateTrout(size_t kind = 99, Vector3D pos = { 0,0,0 }, size_t time = 0);
 
 	/// <summary>
 	/// サイズ

@@ -101,6 +101,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DirectXGame\Application\Actor\BattleTrout.cpp" />
+    <ClCompile Include="DirectXGame\Application\Actor\Skydome.cpp" />
     <ClCompile Include="DirectXGame\Engine\DirectX\DescriptorHeap.cpp" />
     <ClCompile Include="DirectXGame\Application\Collision\CollisionManager.cpp" />
     <ClCompile Include="DirectXGame\Application\Particle\BoxParticle.cpp" />
@@ -204,6 +205,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXGame\Application\Actor\BattleTrout.h" />
+    <ClInclude Include="DirectXGame\Application\Actor\Skydome.h" />
     <ClInclude Include="DirectXGame\Engine\DirectX\DescriptorHeap.h" />
     <ClInclude Include="DirectXGame\Application\Collision\CollisionManager.h" />
     <ClInclude Include="DirectXGame\Application\Scene\BaseScene.h" />

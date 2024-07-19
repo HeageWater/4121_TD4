@@ -57,7 +57,7 @@ void TroutManager::SetModel(Shader shader, GPipeline* pipeline)
 	pipeline_ = pipeline;
 }
 
-void TroutManager::CreateTrout(size_t kind, Vector3D pos)
+void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 {
 	//モデルを指定して3Dオブジェクトを生成
 	BaseTrout* newTrout_ = nullptr;
@@ -101,6 +101,9 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos)
 	//改めて初期化
 	newTrout_->Initialize();
 
+	//時間は特に関係なし
+	time += time;
+
 	//位置と大きさ
 	newTrout_->SetPos(pos);
 	newTrout_->SetScale(Vector3D(5, 5, 5));
@@ -129,7 +132,8 @@ void TroutManager::CreateMap(size_t size)
 		{
 			//マス生成
 			//CreateTrout(Random, { (float)i * 10 , 0, (float)((count / 2) - j) * 10 });
-			CreateTrout(Random, { (float)i * 10 , 0, (float)j * 10 });
+			//CreateTrout(Random, { (float)i * 10 , (float)i * 60, (float)j * 10 });
+			CreateTrout(Random, { (float)i * 10 + (j * 5) , 0, (float)j * 10 + (j * 5) });
 		}
 	}
 }
