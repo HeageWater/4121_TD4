@@ -27,9 +27,6 @@ void TitleScene::Update()
 	//天球更新
 	skydome_->Update(matView_.mat_, matProjection_);
 
-	//UI更新
-	UIUpdate();
-
 	//シーンチェンジ更新
 	ChengeScene::GetInstance()->Update();
 }
@@ -75,17 +72,6 @@ void TitleScene::Initialize()
 	skydome_->Initialize(shader_, pipeline_.get());
 
 
-	//以下sprite
-
-		//基礎
-	sprite_->Inilialize(spriteCommon_, &matProjection_);
-
-	//タイトル絵
-	title_->Inilialize(spriteCommon_, &matProjection_);
-	title_->position_ = { -590,240,0 };
-	title_->scale_ = { 360,144,1 };
-	title_->SetColor(color_);
-	titleTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/white1x1.png");
 }
 
 void TitleScene::Draw()
@@ -135,10 +121,6 @@ void TitleScene::Finalize()
 }
 
 void TitleScene::UIDraw()
-{
-}
-
-void TitleScene::UIUpdate()
 {
 }
 

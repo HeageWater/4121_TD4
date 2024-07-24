@@ -106,11 +106,6 @@ Vector2D Player::MoveCamera(Matrix matView, Matrix matProjection, Input* input)
 
 void Player::Update(Matrix matView, Matrix matProjection)
 {
-	model_->mat_.trans_.x_ += 2;
-
-
-
-
 	//カメラ代入
 	matView_ = matView;
 	matProjection_ = matProjection;

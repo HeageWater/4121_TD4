@@ -207,11 +207,10 @@
     <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp">
       <Filter>ソースファイル\Actor\Trout</Filter>
     </ClCompile>
-    <ClCompile Include="DirectXGame\Application\Actor\Enemy.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\Skydome.cpp">
       <Filter>ソースファイル\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="DirectXGame\Engine\Sprite\TexManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DirectXGame\Application\Scene\BaseScene.h">
@@ -397,17 +396,14 @@
     <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h">
       <Filter>ヘッダーファイル\Actor\Trout</Filter>
     </ClInclude>
-    <ClInclude Include="DirectXGame\Application\Actor\Status.h">
+    <ClInclude Include="Status.h">
       <Filter>ヘッダーファイル\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="DirectXGame\Application\Actor\Enemy.h">
+    <ClInclude Include="Enemy.h">
       <Filter>ヘッダーファイル\Actor\Trout</Filter>
     </ClInclude>
     <ClInclude Include="DirectXGame\Application\Actor\Skydome.h">
       <Filter>ヘッダーファイル\Actor</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectXGame\Engine\Sprite\TexManager.h">
-      <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

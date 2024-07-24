@@ -1,5 +1,4 @@
 #include "PowerUpTrout.h"
-#include "TexManager.h"
 
 PowerUpTrout::PowerUpTrout()
 {
@@ -19,6 +18,9 @@ void PowerUpTrout::Initialize()
 	model_->mat_.Initialize();
 	model_->mat_.trans_ = { 0,0,0 };
 	model_->mat_.scale_ = { 5,5,5 };
+
+	//画像読み込み
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/enhance/enhance.png");
 }
 
 void PowerUpTrout::Update()
@@ -32,8 +34,6 @@ void PowerUpTrout::Update()
 
 void PowerUpTrout::Draw()
 {
-	size_t tex_ = TexManager::GetInstance()->enhancePng;
-
 	//描画
 	model_->Draw(tex_);
 }

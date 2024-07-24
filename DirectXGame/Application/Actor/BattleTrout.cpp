@@ -1,5 +1,4 @@
 #include "BattleTrout.h"
-#include "TexManager.h"
 
 BattleTrout::BattleTrout()
 {
@@ -19,6 +18,9 @@ void BattleTrout::Initialize()
 	model_->mat_.Initialize();
 	model_->mat_.trans_ = { 0,0,0 };
 	model_->mat_.scale_ = { 5,5,5 };
+
+	//画像読み込み
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/battle/battle.png");
 }
 
 void BattleTrout::Update()
@@ -32,8 +34,6 @@ void BattleTrout::Update()
 
 void BattleTrout::Draw()
 {
-	size_t tex_ = TexManager::GetInstance()->battlePng;
-
 	//描画
 	model_->Draw(tex_);
 }
