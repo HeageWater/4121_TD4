@@ -68,7 +68,4 @@ public:
 	//
 	Shader shader_;
 	GPipeline* pipeline_;
-
-	//画像
-	size_t tex_;
 };

@@ -167,7 +167,8 @@
     <ClCompile Include="DirectXGame\Application\Actor\ItemTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\PowerUpTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="DirectXGame\Application\Actor\Enemy.cpp" />
+    <ClCompile Include="DirectXGame\Engine\Sprite\TexManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shader\GeometryPS.hlsl">
@@ -266,8 +267,9 @@
     <ClInclude Include="DirectXGame\Application\Actor\ItemTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\PowerUpTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Status.h" />
+    <ClInclude Include="DirectXGame\Application\Actor\Enemy.h" />
+    <ClInclude Include="DirectXGame\Application\Actor\Status.h" />
+    <ClInclude Include="DirectXGame\Engine\Sprite\TexManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

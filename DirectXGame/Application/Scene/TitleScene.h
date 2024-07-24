@@ -40,6 +40,11 @@ public:
 	/// </summary>
 	void UIDraw();
 
+	/// <summary>
+	/// 一括UIUpdate用
+	/// </summary>
+	void UIUpdate();
+
 private:
 
 	/// <summary>

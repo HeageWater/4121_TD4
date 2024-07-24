@@ -1,10 +1,8 @@
 #include "TroutManager.h"
+#include "TexManager.h"
 
 void TroutManager::Initialize()
 {
-	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/battle/battle.png");
-
 	//マスの数を0に
 	count_ = 0;
 }

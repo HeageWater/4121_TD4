@@ -100,9 +100,6 @@ private:
 	Shader shader_;
 	GPipeline* pipeline_;
 
-	//画像
-	size_t tex_;
-
 	//マスの数
 	size_t count_;
 };

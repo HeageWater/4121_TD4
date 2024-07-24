@@ -1,4 +1,5 @@
 #include "ItemTrout.h"
+#include "TexManager.h"
 
 ItemTrout::ItemTrout()
 {
@@ -18,9 +19,6 @@ void ItemTrout::Initialize()
 	model_->mat_.Initialize();
 	model_->mat_.trans_ = { 0,0,0 };
 	model_->mat_.scale_ = { 5,5,5 };
-
-	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/heal/heal.png");
 }
 
 void ItemTrout::Update()
@@ -34,6 +32,8 @@ void ItemTrout::Update()
 
 void ItemTrout::Draw()
 {
+	size_t tex_ = TexManager::GetInstance()->itemPng_;
+
 	//描画
 	model_->Draw(tex_);
 }
