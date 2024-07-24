@@ -23,6 +23,34 @@ void PlayScene::Update()
 		TroutManager::GetInstance()->CreateMap(a);
 	}
 
+	//
+	switch (mapSelect)
+	{
+	case 0:
+
+		//マス選んでいるとき
+		MoveMap();
+
+		break;
+
+	case 1:
+
+		//マスの中身の処理
+		SelectMap();
+
+		break;
+
+	case 2:
+
+		//戻ってくる処理
+		ReturnMap();
+
+		break;
+
+	default:
+		break;
+	}
+
 
 	///ここまで
 
@@ -82,6 +110,9 @@ void PlayScene::Initialize()
 
 	//test 
 	TroutManager::GetInstance()->Initialize();
+
+	//
+	mapSelect = 0;
 }
 
 void PlayScene::Draw()

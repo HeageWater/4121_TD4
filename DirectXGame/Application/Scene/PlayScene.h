@@ -71,6 +71,8 @@ private:
 	//カラー
 	Vector4D color_ = { 0,0,0,0 };
 
+	size_t mapSelect = 0;
+
 private:
 
 	//プレイヤー
