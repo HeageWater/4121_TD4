@@ -66,7 +66,6 @@ void Player::Initialize(Shader shader, GPipeline* pipeline)
 	///jumpSE_ = sound_->SoundLoadWave("Resources/sound/SE_jump.wav");
 
 	//画像読み込み
-	//tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/skydome/skyBG.png");
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/player/player.png");
 }
 
