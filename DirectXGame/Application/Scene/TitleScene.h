@@ -35,6 +35,11 @@ public:
 	/// </summary>
 	void Finalize()override;
 
+	/// <summary>
+	/// UI表示用
+	/// </summary>
+	void UIDraw();
+
 private:
 
 	/// <summary>
@@ -91,4 +96,14 @@ private:
 
 	//天球
 	std::unique_ptr<Skydome> skydome_;
+
+	//UI周り
+	Sprite* title_ = new Sprite();
+	Sprite* button_ = new Sprite();
+	Sprite* button2_ = new Sprite();
+
+	size_t titleTex_ = 0;
+	size_t button_Tex_ = 0;
+	size_t button_2Tex_ = 0;
+
 };

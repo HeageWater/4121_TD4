@@ -96,6 +96,9 @@ void TitleScene::Draw()
 	//player描画
 	player_->Draw();
 
+	//Ui表示
+	UIDraw();
+
 	///ここまで
 
 	//シーンチェンジ描画
@@ -115,6 +118,10 @@ void TitleScene::Draw()
 void TitleScene::Finalize()
 {
 
+}
+
+void TitleScene::UIDraw()
+{
 }
 
 void TitleScene::Debug()
