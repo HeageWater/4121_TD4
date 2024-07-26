@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include "ChengeScene.h"
 #include "Enum.h"
+#include "Input.h"
 
 void PlayScene::Update()
 {
@@ -110,6 +111,7 @@ void PlayScene::Initialize()
 
 	//test 
 	TroutManager::GetInstance()->Initialize();
+	TroutManager::GetInstance()->SetModel(shader_, pipeline_.get());
 
 	//
 	mapSelect = 0;
@@ -285,6 +287,13 @@ void PlayScene::Debug()
 	//マスの数
 	float sizeT = (float)TroutManager::GetInstance()->GetTrout().size();
 	ImGui::SliderFloat("trout size", &sizeT, 0.01f, 50.99f);
+
+	//カーソルの位置
+	Vector2D mouse;
+	mouse.x_ = (float)Input::GetInstance()->CursorPos().x;
+	mouse.y_ = (float)Input::GetInstance()->CursorPos().y;
+	ImGui::SliderFloat("mouseX", &mouse.x_, 0.01f, 0.99f);
+	ImGui::SliderFloat("mouseY", &mouse.y_, 0.01f, 0.99f);
 
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))

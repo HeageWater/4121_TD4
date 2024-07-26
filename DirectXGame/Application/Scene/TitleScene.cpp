@@ -137,6 +137,19 @@ void TitleScene::Debug()
 	ImGui::SliderFloat("eyeX", &matView_.eye_.x_, 0.01f, 50.99f);
 	ImGui::SliderFloat("eyeZ", &matView_.eye_.z_, 0.01f, 50.99f);
 
+	//カーソルの位置
+	Vector2D mouse;
+	mouse.x_ = (float)Input::GetInstance()->CursorPos().x;
+	mouse.y_ = (float)Input::GetInstance()->CursorPos().y;
+	ImGui::SliderFloat("mouseX", &mouse.x_, 0.01f, 0.99f);
+	ImGui::SliderFloat("mouseY", &mouse.y_, 0.01f, 0.99f);
+
+	//左クリック
+	bool Ltrigger = Input::GetInstance()->ClickTrriger(Input::LeftClick);
+	bool Rtrigger = Input::GetInstance()->ClickTrriger(Input::RightClick);
+	ImGui::Checkbox("leftClick", &Ltrigger);
+	ImGui::Checkbox("rightClick", &Rtrigger);
+
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))
 	{

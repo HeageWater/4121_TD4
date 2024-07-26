@@ -2,6 +2,7 @@
 #include "Easing.h"
 #include "CollisionManager.h"
 #include "ModelManager.h"
+#include "Input.h"
 
 Player::Player()
 {
@@ -108,6 +109,12 @@ void Player::Update(Matrix matView, Matrix matProjection)
 	//カメラ代入
 	matView_ = matView;
 	matProjection_ = matProjection;
+
+	//スペースキーを押したとき
+	if (Input::GetInstance()->GetTrigger(DIK_SPACE))
+	{
+
+	}
 
 	//コントローラーUpdate
 	controller_->Update();

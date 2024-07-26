@@ -106,8 +106,8 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 
 	//位置と大きさ
 	newTrout_->SetPos(pos);
-	newTrout_->SetScale(Vector3D(5, 5, 5));
-	newTrout_->SetVec(Vector3D(1, 1, 1));
+	newTrout_->SetScale(Vector3D(10, 10, 10));
+	newTrout_->SetVec(Vector3D(-1, 1, -1));
 
 	//格納
 	trouts_.push_back(newTrout_);
@@ -133,7 +133,7 @@ void TroutManager::CreateMap(size_t size)
 			//マス生成
 			//CreateTrout(Random, { (float)i * 10 , 0, (float)((count / 2) - j) * 10 });
 			//CreateTrout(Random, { (float)i * 10 , (float)i * 60, (float)j * 10 });
-			CreateTrout(Random, { (float)i * 10 + (j * 5) , 0, (float)j * 10 + (j * 5) });
+			CreateTrout(Random, { (float)i * 10 + (j * 5) , 0, (float)j * 10 + (j * 5) + (j * 10) });
 		}
 	}
 }
