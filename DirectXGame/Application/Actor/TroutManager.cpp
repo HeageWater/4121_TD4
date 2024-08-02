@@ -115,6 +115,9 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 
 void TroutManager::CreateMap(size_t size)
 {
+	//階数
+	count_ = size;
+
 	//マップ生成
 	for (size_t i = 0; i < size; i++)
 	{

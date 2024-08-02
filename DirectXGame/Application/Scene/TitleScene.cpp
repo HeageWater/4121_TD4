@@ -70,8 +70,6 @@ void TitleScene::Initialize()
 	//天球
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(shader_, pipeline_.get());
-
-
 }
 
 void TitleScene::Draw()

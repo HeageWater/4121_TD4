@@ -207,9 +207,11 @@
     <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp">
       <Filter>ソースファイル\Actor\Trout</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\Skydome.cpp">
       <Filter>ソースファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソースファイル\Actor\Trout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

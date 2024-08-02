@@ -79,6 +79,12 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	std::vector<BaseTrout*> GetTrout();
+	
+	/// <summary>
+	/// 階数を返す
+	/// </summary>
+	/// <returns></returns>
+	size_t GetCount() { return count_; };
 
 private:
 

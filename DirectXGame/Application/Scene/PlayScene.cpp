@@ -115,6 +115,9 @@ void PlayScene::Initialize()
 
 	//
 	mapSelect = 0;
+
+	//
+	nowCount_ = 0;
 }
 
 void PlayScene::Draw()
@@ -256,6 +259,21 @@ void PlayScene::BlackOut()
 
 void PlayScene::MoveMap()
 {
+	//マス数
+	size_t count = TroutManager::GetInstance()->GetTrout().size();
+	count++;
+	//階数
+	size_t dan = TroutManager::GetInstance()->GetCount();
+	dan++;
+	//いるべきマスの場所を格納
+	Vector3D troutPos = TroutManager::GetInstance()->GetTrout()[nowCount_]->GetPos();
+
+	//マスの位置にプレイヤーを持ってくる
+	player_->SetPos(troutPos);
+
+	//進行方向決め
+
+
 
 }
 

@@ -71,7 +71,11 @@ private:
 	//カラー
 	Vector4D color_ = { 0,0,0,0 };
 
+	//
 	size_t mapSelect = 0;
+
+	//現階層
+	size_t nowCount_ = 0;
 
 private:
 
