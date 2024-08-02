@@ -106,7 +106,7 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 
 	//位置と大きさ
 	newTrout_->SetPos(pos);
-	newTrout_->SetScale(Vector3D(10, 10, 10));
+	newTrout_->SetScale(Vector3D(5, 5, 5));
 	newTrout_->SetVec(Vector3D(-1, 1, -1));
 
 	//格納
@@ -124,11 +124,11 @@ void TroutManager::CreateMap(size_t size)
 		//2個ずつ増やす
 		size_t count = (i * 2) + 1;
 
-		//半分超えたら減らす
-		if (i + 1 > size / 2)
-		{
-			count = ((size - i - 1) * 2) + 1;
-		}
+		////半分超えたら減らす
+		//if (i + 1 > size / 2)
+		//{
+		//	count = ((size - i - 1) * 2) + 1;
+		//}
 
 		//マスの数
 		for (size_t j = 0; j < count; j++)

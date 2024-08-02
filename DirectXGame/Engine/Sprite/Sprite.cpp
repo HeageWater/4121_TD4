@@ -108,7 +108,7 @@ void Sprite::Inilialize(SpriteCommon* spriteCommon, Matrix* matProjection)
 	assert(SUCCEEDED(result_));
 
 	//値を書き込むと自動的に転送される 
-	constMapTransform_->color_ = MyMath::float4(1, 1, 1, 0.5f);	//普通の色
+	constMapTransform_->color_ = MyMath::float4(1, 1, 1, 1);	//普通の色
 
 	constMapTransform_->mat_ = Matrix();
 

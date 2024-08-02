@@ -263,31 +263,32 @@ void PlayScene::BlackOut()
 void PlayScene::MoveMap()
 {
 	//マス数
-	size_t count = TroutManager::GetInstance()->GetTrout().size();
-	count++;
+	//size_t count = TroutManager::GetInstance()->GetTrout().size();
+
 	//階数
-	size_t dan = TroutManager::GetInstance()->GetCount();
-	dan++;
+	//size_t dan = TroutManager::GetInstance()->GetCount();
+
 	//いるべきマスの場所を格納
 	Vector3D troutPos = TroutManager::GetInstance()->GetTrout()[nowCount_]->GetPos();
 
 	//マスの位置にプレイヤーを持ってくる
 	player_->SetPos(troutPos);
 
+	//次の選択
+	size_t next = nowCount_ * 2;
+
 	//進行方向決め
-	//space押して生成
-	if (input_->GetTrigger(DIK_W))
-	{
-		nowCount_ = 2;
-	}
 	if (input_->GetTrigger(DIK_A))
 	{
-		nowCount_ = 3;
+		nowCount_ = next + 1;
 	}
-
+	if (input_->GetTrigger(DIK_W))
+	{
+		nowCount_ = next + 2;
+	}
 	if (input_->GetTrigger(DIK_D))
 	{
-		nowCount_ = 1;
+		nowCount_ = next + 3;
 	}
 
 

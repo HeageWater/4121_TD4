@@ -34,7 +34,7 @@ void TitleScene::Update()
 void TitleScene::Initialize()
 {
 	//描画用行列
-	matView_.Init(Vector3D(0.0f, 60.0f, -100.0f), Vector3D(0.0f, 30.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
+	matView_.Init(Vector3D(0.0f, 0.0f, -100.0f), Vector3D(0.0f, 0.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
 
 	//shader
 	shader_.Initizlize(L"Resources/shader/BasicVS.hlsl", L"Resources/shader/BasicPS.hlsl");
