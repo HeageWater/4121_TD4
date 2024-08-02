@@ -22,7 +22,10 @@ void PlayScene::Update()
 
 		//バトルマス生成
 		TroutManager::GetInstance()->CreateMap(a);
+
+		mapSelect = 0;
 	}
+
 
 	//
 	switch (mapSelect)
@@ -114,7 +117,7 @@ void PlayScene::Initialize()
 	TroutManager::GetInstance()->SetModel(shader_, pipeline_.get());
 
 	//
-	mapSelect = 0;
+	mapSelect = 99;
 
 	//
 	nowCount_ = 0;
@@ -272,7 +275,20 @@ void PlayScene::MoveMap()
 	player_->SetPos(troutPos);
 
 	//進行方向決め
+	//space押して生成
+	if (input_->GetTrigger(DIK_2))
+	{
+		nowCount_ = 2;
+	}
+	if (input_->GetTrigger(DIK_3))
+	{
+		nowCount_ = 3;
+	}
 
+	if (input_->GetTrigger(DIK_1))
+	{
+		nowCount_ = 1;
+	}
 
 
 }
