@@ -18,9 +18,6 @@ void FlameWork::Update()
 		SetEndRwqust(true);
 	}
 
-	//SetCameraが必要
-	//ParticleManager::GetInstance()->Update();
-
 	//キーボードの受付更新
 	Input::GetInstance()->Update();
 
@@ -45,23 +42,6 @@ void FlameWork::Initialize()
 	//buff
 	cBuff_ = std::make_unique<ConstBuff>(MyDirectX::GetInstance()->GetDev());
 
-	////shader
-	//shader_.Initizlize(L"Resources/shader/BasicVS.hlsl", L"Resources/shader/BasicPS.hlsl");
-	//bilShader_.Initizlize(L"Resources/shader/VShader.hlsl", L"Resources/shader/PShader.hlsl");
-	//spriteShader_.Initizlize(L"Resources/shader/SpriteVS.hlsl", L"Resources/shader/SpritePS.hlsl");
-
-	////pipeline
-	//pipeline_ = std::make_unique<GPipeline>();
-	//pipeline_->Initialize(MyDirectX::GetInstance()->GetDev(), shader_);
-
-	////描画初期化
-	//multipathPipeline_ = std::make_unique<GPipeline>();
-	//multipathPipeline_->Initialize(MyDirectX::GetInstance()->GetDev(), bilShader_);
-
-	////gpipeline
-	//uiPipeline_ = std::make_unique<GPipeline>();
-	//uiPipeline_->Initialize(MyDirectX::GetInstance()->GetDev(), bilShader_);
-
 	//キーボード
 	Input::GetInstance()->Initialize(win_.get());
 
@@ -73,28 +53,18 @@ void FlameWork::Initialize()
 		Window::window_width_, Window::window_height_,
 		MyMath::ConvertToRad(70.0f), 0.1f, 1000.0f);
 
+
+
 	//音読み込み
 	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/BGM.wav");
 	
 	//BGMを鳴らす
 	MyXAudio::GetInstance()->SoundPlayLoopWave(hitSound_);
 
+
+
 	//テクスチャマネージャ
 	TextureManager::GetInstance()->StaticInitialize();
-
-	//欲しい機能
-	{
-		/*Camera::StaticInitialize(windowsApp_.get());
-		
-		SpriteCommon::StaticInitialize();
-		Sprite2D::StaticInitialize(windowsApp_.get());
-
-		Model::StaticInitialize();
-
-		ParticleManager::StaticInitialize();
-
-		LightManager::StaticInitialize(DirectXBase::GetInstance()->GetDevice().Get())*/
-	}
 
 	//シーンチェンジ用クラス
 	ChengeScene::GetInstance()->Initialize(matProjection);
@@ -129,32 +99,11 @@ void FlameWork::Run()
 	//ゲームループ
 	while (true)
 	{
-#ifdef _DEBUG
-
-		//ImGui受付開始
-		//ImguiManager::GetInstance()->Begin();
-
-#endif _DEBUG
-
 		//更新
 		Update();
 
-#ifdef _DEBUG
-
-		//ImGui受付終了
-		//ImguiManager::GetInstance()->End();
-
-#endif _DEBUG
-
 		//描画
 		Draw();
-
-#ifdef _DEBUG
-
-		//ImGui描画
-		//ImguiManager::GetInstance()->Draw();
-
-#endif _DEBUG
 
 		//もしエンドフラグがTrueなら抜ける
 		if (IsEndRequst())
