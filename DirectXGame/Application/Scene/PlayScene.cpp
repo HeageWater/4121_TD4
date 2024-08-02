@@ -276,16 +276,16 @@ void PlayScene::MoveMap()
 
 	//進行方向決め
 	//space押して生成
-	if (input_->GetTrigger(DIK_2))
+	if (input_->GetTrigger(DIK_W))
 	{
 		nowCount_ = 2;
 	}
-	if (input_->GetTrigger(DIK_3))
+	if (input_->GetTrigger(DIK_A))
 	{
 		nowCount_ = 3;
 	}
 
-	if (input_->GetTrigger(DIK_1))
+	if (input_->GetTrigger(DIK_D))
 	{
 		nowCount_ = 1;
 	}

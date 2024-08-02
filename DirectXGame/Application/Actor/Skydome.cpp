@@ -21,7 +21,7 @@ void Skydome::Initialize(Shader shader, GPipeline* pipeline)
 	pipeline_ = pipeline;
 
 	//画像読み込み
-	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources\\skydome\\skydome.jpg");
+	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources\\skydome\\skydome.png");
 
 	//モデル読み込み
 	ModelManager::GetInstance()->LoadModel("Resources\\skydome\\skydome.obj");
