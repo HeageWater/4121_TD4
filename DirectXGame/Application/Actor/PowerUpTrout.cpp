@@ -21,6 +21,8 @@ void PowerUpTrout::Initialize()
 
 	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/enhance/enhance.png");
+
+	kind_ = 1;
 }
 
 void PowerUpTrout::Update()

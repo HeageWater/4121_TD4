@@ -45,7 +45,7 @@ void Window::Initialize()
 	AdjustWindowRect(&wrc, WS_OVERLAPPEDWINDOW, false);
 
 	hwnd_ = CreateWindow(w_.lpszClassName,
-		L"Blade",
+		L"4121_プロローグ",
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,

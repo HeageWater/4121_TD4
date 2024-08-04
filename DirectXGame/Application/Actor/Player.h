@@ -4,6 +4,7 @@
 #include "Input.h"
 #include "Controller.h"
 #include "Sound.h"
+#include "Status.h"
 
 /// <summary>
 /// ゲーム中の自機
@@ -133,6 +134,12 @@ public:
 	/// <returns></returns>
 	MyMath::ObjMatrix GetMat() { return model_->mat_; };
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	Status GetStatus() { return status_; };
+
 private:
 
 	//パイプライン
@@ -153,4 +160,8 @@ private:
 
 	//タイム
 	size_t time_;
+
+public:
+	//
+	Status status_;
 };

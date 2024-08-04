@@ -30,7 +30,7 @@ void Skydome::Initialize(Shader shader, GPipeline* pipeline)
 	model_ = SetModel("Resources\\skydome\\skydome.obj");
 
 	//
-	model_->mat_.scale_ = { 7.0f,7.0f,7.0f };
+	model_->mat_.scale_ = { 100.0f,100.0f,100.0f };
 }
 
 void Skydome::Draw()
@@ -51,6 +51,8 @@ Vector2D Skydome::MoveCamera(Matrix matView, Matrix matProjection)
 
 void Skydome::Update(Matrix matView, Matrix matProjection)
 {
+	model_->mat_.rotAngle_.y_ += 0.001f;
+
 	matView_ = matView;
 	matProjection_ = matProjection;
 

@@ -124,21 +124,16 @@ void TroutManager::CreateMap(size_t size)
 		//2個ずつ増やす
 		size_t count = (i * 2) + 1;
 
-		////半分超えたら減らす
-		//if (i + 1 > size / 2)
-		//{
-		//	count = ((size - i - 1) * 2) + 1;
-		//}
-
 		//マスの数
 		for (size_t j = 0; j < count; j++)
 		{
 			//マス生成
-			//CreateTrout(Random, { (float)i * 10 , 0, (float)((count / 2) - j) * 10 });
-			//CreateTrout(Random, { (float)i * 10 , (float)i * 60, (float)j * 10 });
-			CreateTrout(Random, { (float)i * 10 + (j * 5) , 0, (float)j * 10 + (j * 5) + (j * 10) });
+			CreateTrout(Random, { (float)i * 10 + (i * 5) , 0, (float)j * 10 - (i * 10) });
 		}
 	}
+
+	//boss
+	//CreateTrout(Random, { (float)i * 10 + (i * 5) , 0, (float)j * 10 + (j * 5) - (i * 10) });
 }
 
 std::vector<BaseTrout*> TroutManager::GetTrout()

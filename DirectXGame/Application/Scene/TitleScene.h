@@ -92,18 +92,17 @@ private:
 private:
 
 	//プレイヤー
-	std::unique_ptr<Player> player_;
+	//std::unique_ptr<Player> player_;
 
 	//天球
 	std::unique_ptr<Skydome> skydome_;
 
 	//UI周り
 	Sprite* title_ = new Sprite();
-	Sprite* button_ = new Sprite();
-	Sprite* button2_ = new Sprite();
+	Sprite* start_ = new Sprite();
+	Sprite* exit_ = new Sprite();
 
 	size_t titleTex_ = 0;
-	size_t button_Tex_ = 0;
-	size_t button_2Tex_ = 0;
-
+	size_t startTex_ = 0;
+	size_t exitTex_ = 0;
 };

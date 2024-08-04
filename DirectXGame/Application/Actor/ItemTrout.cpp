@@ -21,6 +21,8 @@ void ItemTrout::Initialize()
 
 	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/heal/heal.png");
+
+	kind_ = 2;
 }
 
 void ItemTrout::Update()

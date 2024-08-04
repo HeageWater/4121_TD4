@@ -2,6 +2,7 @@
 #include "BaseScene.h"
 #include "Input.h"
 #include "Controller.h"
+#include "Skydome.h"
 #include "Sound.h"
 
 /// <summary>
@@ -76,4 +77,11 @@ private:
 	//sprite
 	SpriteCommon* normalSpriteCommon_ = new  SpriteCommon();
 	Sprite* sprite_ = new Sprite();
+
+	Sprite* over_ = new Sprite();
+
+	size_t overTex_ = 0;
+
+	//天球
+	std::unique_ptr<Skydome> skydome_;
 }; 

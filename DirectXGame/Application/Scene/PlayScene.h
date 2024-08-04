@@ -60,6 +60,7 @@ private:
 
 	//tex
 	size_t whiteTex_ = 0;
+	size_t blackTex_ = 0;
 
 	//sprite
 	SpriteCommon* normalSpriteCommon_ = new  SpriteCommon();
@@ -76,6 +77,17 @@ private:
 
 	//現階層
 	size_t nowCount_ = 0;
+
+	//
+	size_t nowdan_ = 0;
+
+	size_t nowStage = 0;
+	bool nowStageF = false;
+
+	size_t nowKind = 0;
+
+	//
+	bool blackOutFlag_ = false;
 
 private:
 

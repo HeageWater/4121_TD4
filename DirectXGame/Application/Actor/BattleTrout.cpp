@@ -21,6 +21,8 @@ void BattleTrout::Initialize()
 
 	//画像読み込み
 	tex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/Model/battle/battle.png");
+
+	kind_ = 0;
 }
 
 void BattleTrout::Update()

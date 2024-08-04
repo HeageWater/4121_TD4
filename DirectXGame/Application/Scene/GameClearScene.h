@@ -3,6 +3,7 @@
 #include "Input.h"
 #include "Controller.h"
 #include "Sound.h"
+#include "Skydome.h"
 
 /// <summary>
 /// ゲームのタイトルシーン
@@ -76,4 +77,11 @@ private:
 	//sprite
 	SpriteCommon* normalSpriteCommon_ = new  SpriteCommon();
 	Sprite* sprite_ = new Sprite();
+
+	Sprite* clear_ = new Sprite();
+
+	size_t clearTex_ = 0;
+
+	//天球
+	std::unique_ptr<Skydome> skydome_;
 };

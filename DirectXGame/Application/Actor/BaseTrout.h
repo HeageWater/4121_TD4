@@ -71,4 +71,6 @@ public:
 
 	//画像
 	size_t tex_;
+
+	size_t kind_ = 0;
 };

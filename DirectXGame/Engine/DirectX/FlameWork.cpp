@@ -74,10 +74,10 @@ void FlameWork::Initialize()
 		MyMath::ConvertToRad(70.0f), 0.1f, 1000.0f);
 
 	//音読み込み
-	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/BGM.wav");
+	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/BGM2.wav");
 	
 	//BGMを鳴らす
-	//MyXAudio::GetInstance()->SoundPlayLoopWave(hitSound_);
+	MyXAudio::GetInstance()->SoundPlayLoopWave(hitSound_);
 
 	//テクスチャマネージャ
 	TextureManager::GetInstance()->StaticInitialize();

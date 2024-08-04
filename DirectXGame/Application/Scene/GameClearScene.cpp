@@ -34,13 +34,37 @@ void GameClearScene::Initialize()
 	ParticleManager::GetInstance()->SetDraw(shader_, pipeline_.get());
 
 	whiteTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/white1x1.png");
+
+	//画像色
+	Vector4D color_ = { 1.0f,1.0f,1.0f,1.0f };
+
+	clearTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/scene/gameclear.png");
+
+	//ライフ英語
+	clear_->Inilialize(normalSpriteCommon_, &matProjection_);
+	clear_->position_ = { -480,-680,0 };
+	clear_->scale_ = { Window::window_width_ * 2,Window::window_height_ * 2,1 };
+	clear_->SetColor(color_);
+
+	//天球
+	skydome_ = std::make_unique<Skydome>();
+	skydome_->Initialize(shader_, pipeline_.get());
 }
 
 void GameClearScene::Update()
 {
-
 	//
 	Debug();
+
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		ChengeScene::GetInstance()->SetPlayFlag("TITLE");
+	}
+
+	clear_->Update();
+
+	//天球更新
+	skydome_->Update(matView_.mat_, matProjection_);
 
 	//スクリーン更新
 	screen_.MatUpdate(matView_.mat_, matProjection_, 0);
@@ -65,6 +89,12 @@ void GameClearScene::Draw()
 	MyDirectX::GetInstance()->PrevDraw();
 
 	screen_.Draw(whiteTex_);
+
+	//天球
+	skydome_->Draw();
+
+	//
+	clear_->Draw(clearTex_);
 
 	//ボックスパーティクル
 	ParticleManager::GetInstance()->Draw();

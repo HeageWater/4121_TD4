@@ -100,6 +100,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DirectXGame\Application\Actor\BattleSystem.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\BattleTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\Skydome.cpp" />
     <ClCompile Include="DirectXGame\Engine\DirectX\DescriptorHeap.cpp" />
@@ -167,7 +168,8 @@
     <ClCompile Include="DirectXGame\Application\Actor\ItemTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\PowerUpTrout.cpp" />
     <ClCompile Include="DirectXGame\Application\Actor\TroutManager.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="DirectXGame\Application\Actor\Enemy.cpp" />
+    <ClCompile Include="DirectXGame\Application\Actor\Status.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shader\GeometryPS.hlsl">
@@ -204,6 +206,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DirectXGame\Application\Actor\BattleSystem.h" />
     <ClInclude Include="DirectXGame\Application\Actor\BattleTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\Skydome.h" />
     <ClInclude Include="DirectXGame\Engine\DirectX\DescriptorHeap.h" />
@@ -266,8 +269,8 @@
     <ClInclude Include="DirectXGame\Application\Actor\ItemTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\PowerUpTrout.h" />
     <ClInclude Include="DirectXGame\Application\Actor\TroutManager.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Status.h" />
+    <ClInclude Include="DirectXGame\Application\Actor\Enemy.h" />
+    <ClInclude Include="DirectXGame\Application\Actor\Status.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

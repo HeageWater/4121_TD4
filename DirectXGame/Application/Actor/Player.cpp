@@ -30,6 +30,11 @@ Player::Player()
 
 	//画像初期化
 	tex_ = 0;
+
+	//
+	status_.Initialize();
+	status_.SetHP(10);
+	status_.SetPower(5);
 }
 
 Player::~Player()

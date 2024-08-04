@@ -11,12 +11,18 @@ void TitleScene::Update()
 	///ここから更新処理追加
 
 	//player更新
-	player_->Update(matView_.mat_, matProjection_);
+	//player_->Update(matView_.mat_, matProjection_);
+
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		ChengeScene::GetInstance()->SetPlayFlag("PLAY");
+	}
 
 	///ここまで
 
-	matView_.eye_.x_ += input_->GetKey(DIK_D) - input_->GetKey(DIK_A);
-	matView_.eye_.z_ += input_->GetKey(DIK_W) - input_->GetKey(DIK_S);
+	title_->Update();
+	exit_->Update();
+	start_->Update();
 
 	//カメラ更新
 	matView_.MatUpdate();
@@ -62,14 +68,33 @@ void TitleScene::Initialize()
 
 	//tex
 	whiteTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/white1x1.png");
+	exitTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/scene/exit.png");
+	startTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/scene/start.png");
+	titleTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/scene/title.png");
 
 	//player初期化
-	player_ = std::make_unique<Player>();
-	player_->Initialize(shader_, pipeline_.get());
+	//player_ = std::make_unique<Player>();
+	//player_->Initialize(shader_, pipeline_.get());
 
 	//天球
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(shader_, pipeline_.get());
+
+	//ライフ英語
+	title_->Inilialize(spriteCommon_, &matProjection_);
+	title_->position_ = { -220,-200,0 };
+	title_->scale_ = { Window::window_width_,Window::window_height_,1 };
+	title_->SetColor(color_);
+
+	start_->Inilialize(spriteCommon_, &matProjection_);
+	start_->position_ = { -220,-280,0 };
+	start_->scale_ = { Window::window_width_,Window::window_height_,1 };
+	start_->SetColor(color_);
+
+	exit_->Inilialize(spriteCommon_, &matProjection_);
+	exit_->position_ = { 0,0,0 };
+	exit_->scale_ = { Window::window_width_,Window::window_height_,1 };
+	exit_->SetColor(color_);
 }
 
 void TitleScene::Draw()
@@ -92,7 +117,7 @@ void TitleScene::Draw()
 	skydome_->Draw();
 
 	//player描画
-	player_->Draw();
+	//player_->Draw();
 
 	//Ui表示
 	UIDraw();
@@ -120,6 +145,9 @@ void TitleScene::Finalize()
 
 void TitleScene::UIDraw()
 {
+	title_->Draw(titleTex_);
+	//exit_->Draw(exitTex_);
+	start_->Draw(startTex_);
 }
 
 void TitleScene::Debug()

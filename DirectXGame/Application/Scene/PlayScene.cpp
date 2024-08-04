@@ -14,18 +14,9 @@ void PlayScene::Update()
 	//space押して生成
 	if (input_->GetTrigger(DIK_SPACE))
 	{
-		//リセット
-		TroutManager::GetInstance()->Reset();
-
-		//マップの階層
-		size_t a = 5;
-
-		//バトルマス生成
-		TroutManager::GetInstance()->CreateMap(a);
-
-		mapSelect = 0;
+		//ブラックアウト
+		blackOutFlag_ = true;
 	}
-
 
 	//
 	switch (mapSelect)
@@ -55,7 +46,6 @@ void PlayScene::Update()
 		break;
 	}
 
-
 	///ここまで
 
 	//更新処理
@@ -65,7 +55,7 @@ void PlayScene::Update()
 void PlayScene::Initialize()
 {
 	//描画用行列
-	matView_.Init(Vector3D(0.0f, 60.0f, -50.0f), Vector3D(0.0f, 30.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
+	matView_.Init(Vector3D(0.0f, 90.0f, -50.0f), Vector3D(0.0f, 10.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
 
 	//shader
 	shader_.Initizlize(L"Resources/shader/BasicVS.hlsl", L"Resources/shader/BasicPS.hlsl");
@@ -82,7 +72,8 @@ void PlayScene::Initialize()
 	//背景のスクリーン(これが必要なので依存しないようにしたい)
 	screen_.Initialize(multipathPipeline_.get(), bilShader_);
 	screen_.obj_.trans_.z_ = 100.1f;
-	screen_.obj_.scale_ = { Window::window_width_ * 2,Window::window_height_ / 2,0.2f };
+	//screen_.obj_.scale_ = { Window::window_width_ * 2,Window::window_height_ / 2,0.2f };
+	screen_.obj_.scale_ = { 0,0,0 };
 
 	//カメラ初期化
 	gameCamera_ = std::make_unique<GameCamera>();
@@ -121,6 +112,35 @@ void PlayScene::Initialize()
 
 	//
 	nowCount_ = 0;
+
+	blackTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/black.png");
+
+	//scale用
+	float size = 15.5f;
+	//ブラックアウト
+	blackOut_->Inilialize(normalSpriteCommon_, &matProjection_);
+	blackOut_->position_ = { -680,-Window::window_height_,0 };
+	blackOut_->scale_ = { Window::window_width_ * size,Window::window_height_ * size,1 };
+	blackOut_->SetColor(color_);
+
+	//更新
+	ModelUpdate();
+
+	//リセット
+	TroutManager::GetInstance()->Reset();
+
+	//マップの階層
+	size_t a = 4;
+
+	//バトルマス生成
+	TroutManager::GetInstance()->CreateMap(a);
+
+	mapSelect = 0;
+
+	nowStage = 0;
+	nowStageF = true;
+
+	nowKind = TroutManager::GetInstance()->GetTrout()[nowCount_]->kind_;
 }
 
 void PlayScene::Draw()
@@ -142,12 +162,38 @@ void PlayScene::Draw()
 	//天球
 	skydome_->Draw();
 
-	//player描画
-	player_->Draw();
+	//
+	switch (mapSelect)
+	{
+	case 0:
 
-	//マス表示
-	TroutManager::GetInstance()->Draw();
+		//player描画
+		player_->Draw();
 
+		//マス表示
+		TroutManager::GetInstance()->Draw();
+
+		break;
+
+	case 1:
+
+
+
+		break;
+
+	case 2:
+
+
+
+		break;
+
+	default:
+		break;
+	}
+
+	//ブラックアウト
+	blackOut_->SetColor(color_);
+	blackOut_->Draw(blackTex_);
 
 	///ここまで
 
@@ -202,62 +248,76 @@ void PlayScene::ModelUpdate()
 
 	//シーンチェンジ更新
 	ChengeScene::GetInstance()->Update();
+
+	//burakkuauto 
+	blackOut_->Update();
+
+	//暗転
+	BlackOut();
 }
 
 void PlayScene::BlackOut()
 {
-	////ブラックアウト
-	//if (blackOutFlag_)
-	//{
-	//	//ブラックアウト
-	//	if (color_.x_ < 1.0f)
-	//	{
-	//		color_.x_ += 0.01f;
-	//		color_.y_ += 0.01f;
-	//		color_.z_ += 0.01f;
-	//		color_.w_ += 0.01f;
+	//ブラックアウト
+	if (blackOutFlag_)
+	{
+		//ブラックアウト
+		if (color_.x_ < 1.3f)
+		{
+			float zouka = 0.005f;
 
-	//		if (color_.x_ >= 1.0f)
-	//		{
-	//			//ステージ読み込み
-	//			if (stageCount_ == ONE)
-	//			{
-	//				LoadObjectData::GetInstance()->StageLoad("stage2");
-	//			}
-	//			else if (stageCount_ == TWO)
-	//			{
-	//				LoadObjectData::GetInstance()->StageLoad("stage3");
-	//			}
-	//			else if (stageCount_ == THREE)
-	//			{
-	//				LoadObjectData::GetInstance()->StageLoad("stage4");
-	//			}
-	//			else if (stageCount_ == FOUR)
-	//			{
-	//				LoadObjectData::GetInstance()->StageLoad("stageLIBLADE");
-	//			}
+			color_.x_ += zouka;
+			color_.y_ += zouka;
+			color_.z_ += zouka;
+			color_.w_ += zouka;
 
-	//			//開始地点をセット
-	//			player_->SetPos(LoadObjectData::GetInstance()->GetStartPos());
+			if (color_.x_ >= 1.3f)
+			{
+				////ステージ読み込み
+				//if (stageCount_ == ONE)
+				//{
+				//	LoadObjectData::GetInstance()->StageLoad("stage2");
+				//}
+				//else if (stageCount_ == TWO)
+				//{
+				//	LoadObjectData::GetInstance()->StageLoad("stage3");
+				//}
+				//else if (stageCount_ == THREE)
+				//{
+				//	LoadObjectData::GetInstance()->StageLoad("stage4");
+				//}
+				//else if (stageCount_ == FOUR)
+				//{
+				//	LoadObjectData::GetInstance()->StageLoad("stageLIBLADE");
+				//}
 
-	//			//ゴール初期化
-	//			goal_->SetPos(LoadObjectData::GetInstance()->GetEndPos());
+				////開始地点をセット
+				//player_->SetPos(LoadObjectData::GetInstance()->GetStartPos());
 
-	//			blackOutFlag_ = false;
-	//		}
-	//	}
-	//}
-	//else
-	//{
-	//	//ブラックアウト
-	//	if (color_.x_ > 0.0f)
-	//	{
-	//		color_.x_ -= 0.01f;
-	//		color_.y_ -= 0.01f;
-	//		color_.z_ -= 0.01f;
-	//		color_.w_ -= 0.01f;
-	//	}
-	//}
+				////ゴール初期化
+				//goal_->SetPos(LoadObjectData::GetInstance()->GetEndPos());
+
+				//
+				blackOutFlag_ = false;
+
+				//ここにフラグ関係
+
+			}
+		}
+	}
+	else
+	{
+		//ブラックアウト
+		if (color_.x_ > 0.0f)
+		{
+			float zouka = 0.005f;
+
+			color_.x_ -= zouka;
+			color_.y_ -= zouka;
+			color_.z_ -= zouka;
+			color_.w_ -= zouka;
+		}
+	}
 }
 
 void PlayScene::MoveMap()
@@ -266,7 +326,7 @@ void PlayScene::MoveMap()
 	//size_t count = TroutManager::GetInstance()->GetTrout().size();
 
 	//階数
-	//size_t dan = TroutManager::GetInstance()->GetCount();
+	size_t dan = TroutManager::GetInstance()->GetCount();
 
 	//いるべきマスの場所を格納
 	Vector3D troutPos = TroutManager::GetInstance()->GetTrout()[nowCount_]->GetPos();
@@ -275,33 +335,115 @@ void PlayScene::MoveMap()
 	player_->SetPos(troutPos);
 
 	//次の選択
-	size_t next = nowCount_ * 2;
+	size_t next = nowdan_ * 2;
 
-	//進行方向決め
-	if (input_->GetTrigger(DIK_A))
+	if (nowdan_ != dan - 1 && !nowStageF)
 	{
-		nowCount_ = next + 1;
-	}
-	if (input_->GetTrigger(DIK_W))
-	{
-		nowCount_ = next + 2;
-	}
-	if (input_->GetTrigger(DIK_D))
-	{
-		nowCount_ = next + 3;
+		//進行方向決め
+		if (input_->GetTrigger(DIK_RIGHT))
+		{
+			nowCount_ += next + 1;
+			nowdan_++;
+			nowStage = 0;
+			nowStageF = true;
+		}
+		if (input_->GetTrigger(DIK_UP))
+		{
+			nowCount_ += next + 2;
+			nowdan_++;
+			nowStage = 0;
+			nowStageF = true;
+		}
+		if (input_->GetTrigger(DIK_LEFT))
+		{
+			nowCount_ += next + 3;
+			nowdan_++;
+			nowStage = 0;
+			nowStageF = true;
+		}
 	}
 
+	if (nowStageF)
+	{
+		nowStage++;
 
+		if (nowStage >= 30)
+		{
+			nowStageF = false;
+
+			mapSelect = 1;
+
+			//ブラックアウト
+			blackOutFlag_ = true;
+		}
+	}
 }
 
 void PlayScene::SelectMap()
 {
+	size_t plus = 0;
 
+	//
+	switch (nowKind)
+	{
+	case 0:
+
+		//バトル
+
+		break;
+
+	case 1:
+
+		//space押して生成
+		if (input_->GetTrigger(DIK_SPACE))
+		{
+			//パワーアップ
+			plus = player_->GetStatus().power_ + MyMath::GetRandom(3, 7);
+
+			player_->status_.power_ = plus;
+		}
+
+		break;
+
+	case 2:
+
+		//space押して生成
+		if (input_->GetTrigger(DIK_SPACE))
+		{
+			//回復
+			plus = player_->GetStatus().hp_ + MyMath::GetRandom(5, 10);
+
+			player_->status_.hp_ = plus;
+		}
+
+		break;
+
+	default:
+		break;
+	}
+
+	//space押して生成
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		//ブラックアウト
+		blackOutFlag_ = true;
+
+		mapSelect = 2;
+	}
 }
 
 void PlayScene::ReturnMap()
 {
+	//space押して生成
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		//ブラックアウト
+		blackOutFlag_ = true;
 
+		matView_.target_ = player_->GetPos();
+
+		mapSelect = 0;
+	}
 }
 
 void PlayScene::Debug()
@@ -329,6 +471,12 @@ void PlayScene::Debug()
 	mouse.y_ = (float)Input::GetInstance()->CursorPos().y;
 	ImGui::SliderFloat("mouseX", &mouse.x_, 0.01f, 0.99f);
 	ImGui::SliderFloat("mouseY", &mouse.y_, 0.01f, 0.99f);
+
+	//カーソルの位置
+	float hp = (float)player_->GetStatus().hp_;
+	float power = (float)player_->GetStatus().power_;
+	ImGui::SliderFloat("hp", &hp, 0.01f, 0.99f);
+	ImGui::SliderFloat("power", &power, 0.01f, 0.99f);
 
 	//titleSceneheへ
 	if (ImGui::Button("TITLE"))

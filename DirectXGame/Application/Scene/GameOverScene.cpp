@@ -25,13 +25,28 @@ void GameOverScene::Initialize()
 	//背景のスクリーン(これが必要なので依存しないようにしたい)
 	screen_.Initialize(multipathPipeline_.get(), bilShader_);
 	screen_.obj_.trans_.z_ = 100.1f;
-	screen_.obj_.scale_ = { Window::window_width_ * 2,Window::window_height_ / 2,0.2f };
+	screen_.obj_.scale_ = { 0,0,0.2f };
 
 	//透過するかどうか
 	normalSpriteCommon_->Inilialize(MyDirectX::GetInstance(), true);
 
 	//基礎
 	sprite_->Inilialize(normalSpriteCommon_, &matProjection_);
+
+	//画像色
+	Vector4D color_ = { 1.0f,1.0f,1.0f,1.0f };
+
+	overTex_ = MyDirectX::GetInstance()->LoadTextureGraph(L"Resources/sprite/scene/gameover.png");
+
+	//ライフ英語
+	over_->Inilialize(normalSpriteCommon_, &matProjection_);
+	over_->position_ = { -480,-680,0 };
+	over_->scale_ = { Window::window_width_ * 2,Window::window_height_ * 2,1 };
+	over_->SetColor(color_);
+
+	//天球
+	skydome_ = std::make_unique<Skydome>();
+	skydome_->Initialize(shader_, pipeline_.get());
 }
 
 void GameOverScene::Update()
@@ -39,8 +54,18 @@ void GameOverScene::Update()
 	//
 	Debug();
 
+	if (input_->GetTrigger(DIK_SPACE))
+	{
+		ChengeScene::GetInstance()->SetPlayFlag("TITLE");
+	}
+
+	over_->Update();
+
 	//カメラ更新
 	matView_.MatUpdate();
+
+	//天球更新
+	skydome_->Update(matView_.mat_, matProjection_);
 
 	//スクリーン更新
 	screen_.MatUpdate(matView_.mat_, matProjection_, 0);
@@ -62,6 +87,12 @@ void GameOverScene::Draw()
 
 	//スクリーン描画
 	screen_.Draw(whiteTex_);
+
+	//天球
+	skydome_->Draw();
+
+	//
+	over_->Draw(overTex_);
 
 	//シーンチェンジ描画
 	ChengeScene::GetInstance()->Draw();
