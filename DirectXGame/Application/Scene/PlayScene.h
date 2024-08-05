@@ -20,6 +20,7 @@
 
 #include "Skydome.h"
 #include "TroutManager.h"
+#include "Enemy.h"
 
 /// <summary>
 /// 基本的なゲーム用シーン
@@ -93,6 +94,9 @@ private:
 
 	//プレイヤー
 	std::unique_ptr<Player> player_;
+	std::unique_ptr<Enemy> enemy_;
+	//std::unique_ptr<Enemy> enemy2_;
+	//std::unique_ptr<BossEnemy> bossEnemy_;
 
 	//天球
 	std::unique_ptr<Skydome> skydome_;

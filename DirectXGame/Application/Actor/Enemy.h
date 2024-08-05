@@ -1,5 +1,7 @@
 #pragma once
 #include "GameModel.h"
+#include "Status.h"
+#include "Sound.h"
 
 class Enemy : GameModel
 {
@@ -49,6 +51,11 @@ public:
 	void Reset();
 
 	/// <summary>
+	/// 
+	/// </summary>
+	void Attack();
+
+	/// <summary>
 	/// posを返す
 	/// </summary>
 	/// <returns></returns>
@@ -67,6 +74,12 @@ public:
 	void SetScale(Vector3D scale) { model_->mat_.scale_ = scale; };
 
 	/// <summary>
+	/// scaleをセットする
+	/// </summary>
+	/// <param name="pos"></param>
+	void SetRot(Vector3D rotAngle) { model_->mat_.rotAngle_ = rotAngle; };
+
+	/// <summary>
 	/// rotaionを返す
 	/// </summary>
 	/// <returns></returns>
@@ -77,11 +90,6 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	Vector3D GetScale() { return model_->mat_.scale_; };
-
-	/// <summary>
-	/// 震える
-	/// </summary>
-	void Sheik();
 
 	/// <summary>
 	/// matview,matProdactionをセット
@@ -110,4 +118,11 @@ private:
 
 	//タイム
 	size_t time_ = 0;
+
+	bool atackF = false;
+
+public:
+	//
+	Status status_;
+
 };

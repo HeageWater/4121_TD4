@@ -47,6 +47,9 @@ void GameOverScene::Initialize()
 	//天球
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(shader_, pipeline_.get());
+
+	//音読み込み
+	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/Click.wav");
 }
 
 void GameOverScene::Update()
@@ -57,6 +60,9 @@ void GameOverScene::Update()
 	if (input_->GetTrigger(DIK_SPACE))
 	{
 		ChengeScene::GetInstance()->SetPlayFlag("TITLE");
+
+		//BGMを鳴らす
+		MyXAudio::GetInstance()->SoundPlayWave(hitSound_);
 	}
 
 	over_->Update();

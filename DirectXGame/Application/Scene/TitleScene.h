@@ -105,4 +105,6 @@ private:
 	size_t titleTex_ = 0;
 	size_t startTex_ = 0;
 	size_t exitTex_ = 0;
+
+	size_t hitSound_ = 0;
 };

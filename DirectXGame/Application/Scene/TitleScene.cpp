@@ -15,7 +15,11 @@ void TitleScene::Update()
 
 	if (input_->GetTrigger(DIK_SPACE))
 	{
+		//
 		ChengeScene::GetInstance()->SetPlayFlag("PLAY");
+
+		//BGMを鳴らす
+		MyXAudio::GetInstance()->SoundPlayWave(hitSound_);
 	}
 
 	///ここまで
@@ -95,6 +99,9 @@ void TitleScene::Initialize()
 	exit_->position_ = { 0,0,0 };
 	exit_->scale_ = { Window::window_width_,Window::window_height_,1 };
 	exit_->SetColor(color_);
+
+	//音読み込み
+	hitSound_ = MyXAudio::GetInstance()->SoundLoadWave("Resources/sound/Click.wav");
 }
 
 void TitleScene::Draw()

@@ -34,7 +34,7 @@ Player::Player()
 	//
 	status_.Initialize();
 	status_.SetHP(10);
-	status_.SetPower(5);
+	status_.SetPower(3);
 }
 
 Player::~Player()
@@ -114,12 +114,6 @@ void Player::Update(Matrix matView, Matrix matProjection)
 	//カメラ代入
 	matView_ = matView;
 	matProjection_ = matProjection;
-
-	//スペースキーを押したとき
-	if (Input::GetInstance()->GetTrigger(DIK_SPACE))
-	{
-
-	}
 
 	//コントローラーUpdate
 	controller_->Update();

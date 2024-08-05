@@ -14,6 +14,7 @@ void TroutManager::Update()
 	//ステージ更新
 	for (size_t i = 0; i < trouts_.size(); i++)
 	{
+		trouts_[i]->SetCamera(view_, prodaction_);
 		trouts_[i]->Update();
 	}
 }
@@ -69,20 +70,16 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 		size_t minRange = 0;
 
 		//最大値
-		size_t maxRange = Size - 1;
+		size_t maxRange = Size + 1;
 
 		//ランダム
 		kind = MyMath::GetRandom(minRange, maxRange);
 	}
 
 	//引数がBattleなら
-	if (kind == Battle)
-	{
-		//バトルマスに
-		newTrout_ = new BattleTrout();
-	}
+	
 	//引数がPowerUpなら
-	else if (kind == PowerUp)
+	if (kind == PowerUp)
 	{
 		//バトルマスに
 		newTrout_ = new PowerUpTrout();
@@ -92,6 +89,11 @@ void TroutManager::CreateTrout(size_t kind, Vector3D pos, size_t time)
 	{
 		//バトルマスに
 		newTrout_ = new ItemTrout();
+	}
+	else
+	{
+		//バトルマスに
+		newTrout_ = new BattleTrout();
 	}
 
 	//初期化に必要な変数代入

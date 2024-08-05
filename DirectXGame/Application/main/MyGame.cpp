@@ -7,8 +7,8 @@ void MyGame::Initialize()
 	FlameWork::Initialize();
 
 	//シーンマネージャーに最初のシーンをセット
-	//SceneManager::GetInstance()->ChangeScene("TITLE");
-	SceneManager::GetInstance()->ChangeScene("PLAY");
+	SceneManager::GetInstance()->ChangeScene("TITLE");
+	//SceneManager::GetInstance()->ChangeScene("PLAY");
 }
 
 void MyGame::Update()

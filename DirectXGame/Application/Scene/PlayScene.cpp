@@ -3,6 +3,7 @@
 #include "ChengeScene.h"
 #include "Enum.h"
 #include "Input.h"
+#include "BattleSystem.h"
 
 void PlayScene::Update()
 {
@@ -11,12 +12,6 @@ void PlayScene::Update()
 
 	///ここから更新処理追加
 
-	//space押して生成
-	if (input_->GetTrigger(DIK_SPACE))
-	{
-		//ブラックアウト
-		blackOutFlag_ = true;
-	}
 
 	//
 	switch (mapSelect)
@@ -35,11 +30,6 @@ void PlayScene::Update()
 
 		break;
 
-	case 2:
-
-		//戻ってくる処理
-		ReturnMap();
-
 		break;
 
 	default:
@@ -55,7 +45,7 @@ void PlayScene::Update()
 void PlayScene::Initialize()
 {
 	//描画用行列
-	matView_.Init(Vector3D(0.0f, 90.0f, -50.0f), Vector3D(0.0f, 10.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
+	matView_.Init(Vector3D(0.0f, 90.0f, -60.0f), Vector3D(0.0f, 10.0f, 0.0f), Vector3D(0.0f, 1.0f, 0.0f));
 
 	//shader
 	shader_.Initizlize(L"Resources/shader/BasicVS.hlsl", L"Resources/shader/BasicPS.hlsl");
@@ -99,6 +89,10 @@ void PlayScene::Initialize()
 	player_ = std::make_unique<Player>();
 	player_->Initialize(shader_, pipeline_.get());
 
+	//
+	enemy_ = std::make_unique<Enemy>();
+	enemy_->Initialize(shader_, pipeline_.get());
+
 	//天球
 	skydome_ = std::make_unique<Skydome>();
 	skydome_->Initialize(shader_, pipeline_.get());
@@ -141,6 +135,9 @@ void PlayScene::Initialize()
 	nowStageF = true;
 
 	nowKind = TroutManager::GetInstance()->GetTrout()[nowCount_]->kind_;
+
+	//
+	BattleSystem::GetInstance()->Initalize(shader_, pipeline_.get());
 }
 
 void PlayScene::Draw()
@@ -177,13 +174,32 @@ void PlayScene::Draw()
 
 	case 1:
 
+		//
+		switch (nowKind)
+		{
+		case 0:
 
+			//バトル
 
-		break;
+			//
+			//enemy_->Draw();
 
-	case 2:
+			//
+			BattleSystem::GetInstance()->Draw();
 
+			break;
 
+		case 1:
+
+			break;
+
+		case 2:
+
+			break;
+
+		default:
+			break;
+		}
 
 		break;
 
@@ -232,6 +248,10 @@ void PlayScene::ModelUpdate()
 	//player更新
 	player_->Update(matView_.mat_, matProjection_);
 
+	//
+	enemy_->SetCamera(matView_.mat_, matProjection_);
+	enemy_->Update();
+
 	//マス更新
 	TroutManager::GetInstance()->SetCamera(matView_.mat_, matProjection_);
 	TroutManager::GetInstance()->Update();
@@ -262,7 +282,7 @@ void PlayScene::BlackOut()
 	if (blackOutFlag_)
 	{
 		//ブラックアウト
-		if (color_.x_ < 1.3f)
+		if (color_.x_ < 1.0f)
 		{
 			float zouka = 0.005f;
 
@@ -271,37 +291,25 @@ void PlayScene::BlackOut()
 			color_.z_ += zouka;
 			color_.w_ += zouka;
 
-			if (color_.x_ >= 1.3f)
+			if (color_.x_ >= 1.0f)
 			{
-				////ステージ読み込み
-				//if (stageCount_ == ONE)
-				//{
-				//	LoadObjectData::GetInstance()->StageLoad("stage2");
-				//}
-				//else if (stageCount_ == TWO)
-				//{
-				//	LoadObjectData::GetInstance()->StageLoad("stage3");
-				//}
-				//else if (stageCount_ == THREE)
-				//{
-				//	LoadObjectData::GetInstance()->StageLoad("stage4");
-				//}
-				//else if (stageCount_ == FOUR)
-				//{
-				//	LoadObjectData::GetInstance()->StageLoad("stageLIBLADE");
-				//}
-
-				////開始地点をセット
-				//player_->SetPos(LoadObjectData::GetInstance()->GetStartPos());
-
-				////ゴール初期化
-				//goal_->SetPos(LoadObjectData::GetInstance()->GetEndPos());
-
 				//
 				blackOutFlag_ = false;
 
 				//ここにフラグ関係
+				if (mapSelect == 0)
+				{
+					mapSelect = 1;
 
+					BattleSystem::GetInstance()->Reaet();
+					BattleSystem::GetInstance()->SetPlayerStatus(player_->status_);
+				}
+				else
+				{
+					mapSelect = 0;
+					matView_.target_.x_ = player_->GetPos().x_;
+					matView_.eye_.x_ = player_->GetPos().x_;
+				}
 			}
 		}
 	}
@@ -346,6 +354,7 @@ void PlayScene::MoveMap()
 			nowdan_++;
 			nowStage = 0;
 			nowStageF = true;
+			nowKind = TroutManager::GetInstance()->GetTrout()[nowCount_]->kind_;
 		}
 		if (input_->GetTrigger(DIK_UP))
 		{
@@ -353,6 +362,7 @@ void PlayScene::MoveMap()
 			nowdan_++;
 			nowStage = 0;
 			nowStageF = true;
+			nowKind = TroutManager::GetInstance()->GetTrout()[nowCount_]->kind_;
 		}
 		if (input_->GetTrigger(DIK_LEFT))
 		{
@@ -360,6 +370,7 @@ void PlayScene::MoveMap()
 			nowdan_++;
 			nowStage = 0;
 			nowStageF = true;
+			nowKind = TroutManager::GetInstance()->GetTrout()[nowCount_]->kind_;
 		}
 	}
 
@@ -367,11 +378,10 @@ void PlayScene::MoveMap()
 	{
 		nowStage++;
 
-		if (nowStage >= 30)
+		//if (nowStage >= 30)
+		if (input_->GetTrigger(DIK_SPACE))
 		{
 			nowStageF = false;
-
-			mapSelect = 1;
 
 			//ブラックアウト
 			blackOutFlag_ = true;
@@ -383,6 +393,11 @@ void PlayScene::SelectMap()
 {
 	size_t plus = 0;
 
+	Vector3D pos = { 10,0,-10 };
+
+	//階数
+	size_t dan = TroutManager::GetInstance()->GetCount();
+
 	//
 	switch (nowKind)
 	{
@@ -390,17 +405,57 @@ void PlayScene::SelectMap()
 
 		//バトル
 
+		BattleSystem::GetInstance()->SetCamera(matView_.mat_, matProjection_);
+		BattleSystem::GetInstance()->Update();
+
+		if (BattleSystem::GetInstance()->Nextbattle())
+		{
+
+			player_->status_ = BattleSystem::GetInstance()->GetPlayerStatus();
+
+			if (!blackOutFlag_)
+			{
+				if (nowdan_ != dan - 1)
+				{
+					//ブラックアウト
+					blackOutFlag_ = true;
+				}
+				else
+				{
+					//
+					ChengeScene::GetInstance()->SetPlayFlag("GAMECLEAR");
+				}
+			}
+		}
+
+		if (BattleSystem::GetInstance()->GameOver())
+		{
+			//
+			ChengeScene::GetInstance()->SetPlayFlag("GAMEOVER");
+		}
+
 		break;
 
 	case 1:
 
 		//space押して生成
-		if (input_->GetTrigger(DIK_SPACE))
+		if (input_->GetTrigger(DIK_SPACE) && !blackOutFlag_)
 		{
 			//パワーアップ
 			plus = player_->GetStatus().power_ + MyMath::GetRandom(3, 7);
 
 			player_->status_.power_ = plus;
+
+			if (nowdan_ != dan - 1)
+			{
+				//ブラックアウト
+				blackOutFlag_ = true;
+			}
+			else
+			{
+				//
+				ChengeScene::GetInstance()->SetPlayFlag("GAMECLEAR");
+			}
 		}
 
 		break;
@@ -408,27 +463,29 @@ void PlayScene::SelectMap()
 	case 2:
 
 		//space押して生成
-		if (input_->GetTrigger(DIK_SPACE))
+		if (input_->GetTrigger(DIK_SPACE) && !blackOutFlag_)
 		{
 			//回復
 			plus = player_->GetStatus().hp_ + MyMath::GetRandom(5, 10);
 
 			player_->status_.hp_ = plus;
+
+			if (nowdan_ != dan - 1)
+			{
+				//ブラックアウト
+				blackOutFlag_ = true;
+			}
+			else
+			{
+				//
+ 				ChengeScene::GetInstance()->SetPlayFlag("GAMECLEAR");
+			}
 		}
 
 		break;
 
 	default:
 		break;
-	}
-
-	//space押して生成
-	if (input_->GetTrigger(DIK_SPACE))
-	{
-		//ブラックアウト
-		blackOutFlag_ = true;
-
-		mapSelect = 2;
 	}
 }
 

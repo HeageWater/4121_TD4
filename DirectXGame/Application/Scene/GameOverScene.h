@@ -82,6 +82,8 @@ private:
 
 	size_t overTex_ = 0;
 
+	size_t hitSound_ = 0;
+
 	//天球
 	std::unique_ptr<Skydome> skydome_;
-}; 
+};
